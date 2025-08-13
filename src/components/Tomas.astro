@@ -236,7 +236,7 @@
         </div>
     </div>
 
-    <script>
+    <script is:inline>
         // Add some interactive magic
         function celebrate() {
             // Create confetti effect
@@ -271,6 +271,7 @@
         // Mouse follow effect
         document.addEventListener('mousemove', (e) => {
             const card = document.querySelector('.glass-card');
+            if (!card) return; // Extra säkerhet
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
@@ -283,13 +284,18 @@
 
         document.addEventListener('mouseleave', () => {
             const card = document.querySelector('.glass-card');
-            card.style.transform = 'perspective(1000px) rotateX(5deg)';
+            if (card) {
+                card.style.transform = 'perspective(1000px) rotateX(5deg)';
+            }
         });
 
         // Page load animation
         window.addEventListener('load', () => {
             document.body.style.animation = 'fadeIn 1s ease-out';
         });
+
+        // Gör celebrate() tillgänglig globalt
+        window.celebrate = celebrate;
     </script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import { Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
 ---
 
 <!doctype html>
@@ -12,7 +14,17 @@ import "../styles/global.css";
     <title>Astro Basics</title>
   </head>
   <body>
-    <slot />
+    <Theme
+      appearance="dark"
+      accentColor="indigo"
+      grayColor="slate"
+      radius="large"
+      panelBackground="solid"
+    >
+      <main>
+        <slot />
+      </main>
+    </Theme>
   </body>
 </html>
 

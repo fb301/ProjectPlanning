@@ -2,10 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import Sidebar from "../components/Sidebar.astro";
 import TaskForm from "../components/TaskForm.astro";
+import KanbanBoard from "../components/KanbanBoard.jsx";
 /* fixing stuff */
 ---
 
 <Layout>
   <Sidebar />
   <TaskForm />
+  <KanbanBoard client:load />
 </Layout>

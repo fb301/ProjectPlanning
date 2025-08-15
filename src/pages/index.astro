@@ -1,13 +1,316 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Sidebar from "../components/Sidebar.astro";
-import TaskForm from "../components/TaskForm.astro";
-import KanbanBoard from "../components/KanbanBoard.jsx";
-/* fixing stuff */
 ---
 
 <Layout>
   <Sidebar />
-  <TaskForm />
-  <KanbanBoard client:load />
+
+  <!-- Dashboard Content -->
+  <div class="ml-0 md:ml-16 p-6">
+    <!-- Header -->
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-[var(--gray-12)] mb-2">Dashboard</h1>
+      <p class="text-[var(--gray-11)]">
+        Welcome back! Here's what's happening with your projects.
+      </p>
+    </header>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div
+        class="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm"
+      >
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-[var(--gray-11)] mb-1">Total Projects</p>
+            <p class="text-2xl font-semibold text-[var(--gray-12)]">12</p>
+          </div>
+          <div
+            class="w-12 h-12 bg-[var(--accent-a3)] rounded-[var(--radius-2)] flex items-center justify-center"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="text-[var(--accent-11)]"
+            >
+              <path d="M3 3h18v18H3zM9 9h6v6H9z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm"
+      >
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-[var(--gray-11)] mb-1">Active Tasks</p>
+            <p class="text-2xl font-semibold text-[var(--gray-12)]">24</p>
+          </div>
+          <div
+            class="w-12 h-12 bg-[var(--accent-a3)] rounded-[var(--radius-2)] flex items-center justify-center"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="text-[var(--accent-11)]"
+            >
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm"
+      >
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-[var(--gray-11)] mb-1">Completed</p>
+            <p class="text-2xl font-semibold text-[var(--gray-12)]">18</p>
+          </div>
+          <div
+            class="w-12 h-12 bg-green-100 rounded-[var(--radius-2)] flex items-center justify-center"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="text-green-600"
+            >
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm"
+      >
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-[var(--gray-11)] mb-1">Team Members</p>
+            <p class="text-2xl font-semibold text-[var(--gray-12)]">8</p>
+          </div>
+          <div
+            class="w-12 h-12 bg-[var(--accent-a3)] rounded-[var(--radius-2)] flex items-center justify-center"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              class="text-[var(--accent-11)]"
+            >
+              <path
+                d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Recent Projects -->
+      <div class="lg:col-span-2">
+        <div
+          class="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm"
+        >
+          <h2 class="text-lg font-semibold text-[var(--gray-12)] mb-4">
+            Recent Projects
+          </h2>
+          <div class="space-y-4">
+            <div
+              class="flex items-center justify-between p-4 bg-[var(--gray-a2)] rounded-[var(--radius-2)]"
+            >
+              <div class="flex items-center space-x-3">
+                <div
+                  class="w-10 h-10 bg-[var(--accent-9)] rounded-[var(--radius-1)] flex items-center justify-center text-white font-medium"
+                >
+                  P1
+                </div>
+                <div>
+                  <p class="font-medium text-[var(--gray-12)]">
+                    Website Redesign
+                  </p>
+                  <p class="text-sm text-[var(--gray-11)]">
+                    Updated 2 hours ago
+                  </p>
+                </div>
+              </div>
+              <span
+                class="px-2 py-1 bg-[var(--accent-a3)] text-[var(--accent-11)] text-xs font-medium rounded-[var(--radius-1)]"
+              >
+                In Progress
+              </span>
+            </div>
+
+            <div
+              class="flex items-center justify-between p-4 bg-[var(--gray-a2)] rounded-[var(--radius-2)]"
+            >
+              <div class="flex items-center space-x-3">
+                <div
+                  class="w-10 h-10 bg-[var(--accent-9)] rounded-[var(--radius-1)] flex items-center justify-center text-white font-medium"
+                >
+                  P2
+                </div>
+                <div>
+                  <p class="font-medium text-[var(--gray-12)]">Mobile App</p>
+                  <p class="text-sm text-[var(--gray-11)]">Updated 1 day ago</p>
+                </div>
+              </div>
+              <span
+                class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-[var(--radius-1)]"
+              >
+                Completed
+              </span>
+            </div>
+
+            <div
+              class="flex items-center justify-between p-4 bg-[var(--gray-a2)] rounded-[var(--radius-2)]"
+            >
+              <div class="flex items-center space-x-3">
+                <div
+                  class="w-10 h-10 bg-[var(--accent-9)] rounded-[var(--radius-1)] flex items-center justify-center text-white font-medium"
+                >
+                  P3
+                </div>
+                <div>
+                  <p class="font-medium text-[var(--gray-12)]">
+                    API Integration
+                  </p>
+                  <p class="text-sm text-[var(--gray-11)]">
+                    Updated 3 days ago
+                  </p>
+                </div>
+              </div>
+              <span
+                class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-[var(--radius-1)]"
+              >
+                Review
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Feed -->
+      <div>
+        <div
+          class="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm"
+        >
+          <h2 class="text-lg font-semibold text-[var(--gray-12)] mb-4">
+            Recent Activity
+          </h2>
+          <div class="space-y-4">
+            <div class="flex space-x-3">
+              <div
+                class="w-8 h-8 bg-[var(--accent-a3)] rounded-full flex items-center justify-center"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  class="text-[var(--accent-11)]"
+                >
+                  <path d="M12 5v14m-7-7h14"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm text-[var(--gray-12)]">
+                  New task added to Website Redesign
+                </p>
+                <p class="text-xs text-[var(--gray-11)]">2 hours ago</p>
+              </div>
+            </div>
+
+            <div class="flex space-x-3">
+              <div
+                class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  class="text-green-600"
+                >
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm text-[var(--gray-12)]">
+                  Mobile App project completed
+                </p>
+                <p class="text-xs text-[var(--gray-11)]">1 day ago</p>
+              </div>
+            </div>
+
+            <div class="flex space-x-3">
+              <div
+                class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  class="text-blue-600"
+                >
+                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm text-[var(--gray-12)]">
+                  Sarah joined the team
+                </p>
+                <p class="text-xs text-[var(--gray-11)]">2 days ago</p>
+              </div>
+            </div>
+
+            <div class="flex space-x-3">
+              <div
+                class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  class="text-yellow-600"
+                >
+                  <path
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm text-[var(--gray-12)]">
+                  API Integration needs review
+                </p>
+                <p class="text-xs text-[var(--gray-11)]">3 days ago</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>

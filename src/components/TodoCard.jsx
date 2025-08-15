@@ -29,10 +29,9 @@ export default function TodoCard({ title, description, status, assignedTo, dueDa
       <p className="text-gray-800 text-lg mb-4 italic">{description}</p>
 
       <div className="text-base text-gray-900 flex justify-between mb-2">
-  <span>👤 <strong>{assignedTo}</strong></span>
-  <span>📅 <strong>{dueDate}</strong></span>
-</div>
-
+        <span>👤 <strong>{assignedTo}</strong></span>
+        <span>📅 <strong>{dueDate}</strong></span>
+      </div>
 
       <div className="text-sm">
         🔥 Priority: <span className={priorityColor}>{priority}</span>

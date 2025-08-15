@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Column from "./Column";
 import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
-import { arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { arrayMove } from "@dnd-kit/sortable";
 
 const initialTasks = {
   todo: [
@@ -18,32 +18,44 @@ const initialTasks = {
 
 export default function KanbanBoard() {
   const [tasks, setTasks] = useState(initialTasks);
-
   const sensors = useSensors(useSensor(PointerSensor));
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
     if (!over) return;
 
-    const [sourceColumnId, sourceIndex] = active.id.split("-");
-    const [destColumnId, destIndex] = over.id.split("-");
+    let sourceColumnId = Object.keys(tasks).find(col =>
+      tasks[col].some(task => task.id === active.id)
+    );
 
-    if (sourceColumnId === destColumnId) {
+    let destColumnId = Object.keys(tasks).find(col =>
+      tasks[col].some(task => task.id === over.id) || over.id === col
+    );
+
+    if (!sourceColumnId || !destColumnId) return;
+
+    const sourceIndex = tasks[sourceColumnId].findIndex(task => task.id === active.id);
+    const destIndex = tasks[destColumnId].findIndex(task => task.id === over.id);
+    const isSameColumn = sourceColumnId === destColumnId;
+
+    if (isSameColumn) {
       const newTasks = Array.from(tasks[sourceColumnId]);
-      const oldIndex = parseInt(sourceIndex);
-      const newIndex = parseInt(destIndex);
-      arrayMove(newTasks, oldIndex, newIndex);
-      setTasks((prev) => ({ ...prev, [sourceColumnId]: newTasks }));
+      setTasks(prev => ({
+        ...prev,
+        [sourceColumnId]: arrayMove(newTasks, sourceIndex, destIndex),
+      }));
     } else {
-      // نقل بين الأعمدة
       const sourceTasks = Array.from(tasks[sourceColumnId]);
-      const movedTask = sourceTasks.splice(parseInt(sourceIndex), 1)[0];
-      movedTask.status = destColumnId === "todo" ? "Todo" : destColumnId === "inProgress" ? "In Progress" : "Done";
+      const [movedTask] = sourceTasks.splice(sourceIndex, 1);
+      movedTask.status =
+        destColumnId === "todo" ? "Todo" :
+        destColumnId === "inProgress" ? "In Progress" : "Done";
 
       const destTasks = Array.from(tasks[destColumnId]);
-      destTasks.splice(parseInt(destIndex), 0, movedTask);
+      const finalDestIndex = destIndex === -1 ? 0 : destIndex;
+      destTasks.splice(finalDestIndex, 0, movedTask);
 
-      setTasks((prev) => ({
+      setTasks(prev => ({
         ...prev,
         [sourceColumnId]: sourceTasks,
         [destColumnId]: destTasks,

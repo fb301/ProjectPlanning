@@ -1,10 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Sidebar from "../components/Sidebar.astro";
-import TaskForm from "../components/TaskForm.astro";
+import TodoForm from "../components/TodoForm.jsx";
 ---
 
 <Layout>
   <Sidebar />
-  <TaskForm />
+  <div class="min-h-screen flex items-center justify-center">
+    <TodoForm client:load />
+  </div>
 </Layout>

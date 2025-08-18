@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import FormInput from "./FormInput.jsx";
 import { supabase } from "../../utils/supabase";
 
-export default function TodoForm() {
+export default function TodoForm({
+  title = "",
+  description = "",
+  status = "todo",
+  assignedTo = "",
+  dueDate = "",
+  priority = "medium",
+}) {
   const initialFormState = {
-    title: "",
-    description: "",
-    status: "todo",
-    assignedTo: "",
-    dueDate: "", // YYYY-MM-DD från <input type="date" />
-    priority: "medium",
+    title: title,
+    description: description,
+    status: status,
+    assignedTo: assignedTo, // tom sträng om inte tilldelad
+    dueDate: dueDate, // YYYY-MM-DD från <input type="date" />
+    priority: priority, // 'low' | 'medium' | 'high'
   };
 
   const [task, setTask] = useState(initialFormState);

@@ -1,0 +1,1173 @@
+---
+// Import av andra komponenter eller data
+// Här kan du importerar ikoner från heroicons eller ett annat bibliotek
+---
+
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taskform</title>
+  </head>
+  <body>
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+    <div class="container">
+      <div class="top-flex-wrapper">
+        <div class="glass-card">
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="step-indicator">
+              <span class="step active" id="step1">Medlem Info</span>
+              <span class="step" id="step2">Sprint Detaljer</span>
+              <span class="step" id="step3">Bekräfta</span>
+            </div>
+          </div>
+          <form id="multiForm">
+            <div class="form-step active" data-step="1">
+              <h2 class="form-title">
+                <svg
+                  class="icon-title"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m-9.303-3.375c-.864 1.13-1.42 2.454-1.652 3.864m18.704-3.864c.232-1.41.788-2.734 1.652-3.864M12 9a9 9 0 0 1 8.243 4.243M12 9a9 0 0 0-8.243 4.243m-6.49 2.502a15.018 15.018 0 0 1 10.233 4.887 15.018 15.018 0 0 0-10.233-4.887ZM21.944 11.5a23.111 23.111 0 0 0-2.31 3.513c-2.484 4.095-6.31 6.844-10.373 6.945-2.039.052-4.072-.345-5.918-1.168A24.873 24.873 0 0 1 1.707 14.5c.232-1.41.788-2.734 1.652-3.864m18.704-3.864c.232-1.41.788-2.734 1.652-3.864"
+                  />
+                </svg>
+                Don't be dumb, have a scrum!
+              </h2>
+              <p class="form-subtitle">
+                Registrera dig för vårt scrum meeting. Vi behöver bara
+                grundläggande information för att komma igång.
+              </p>
+              <div class="form-group">
+                <label class="form-label">Namn *</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  name="fullName"
+                  placeholder="Ditt fullständiga namn"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">E-post *</label>
+                <input
+                  type="email"
+                  class="form-input"
+                  name="email"
+                  placeholder="din@email.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Roll i teamet</label>
+                <select class="form-select" name="role">
+                  <option value="">Välj din roll</option>
+                  <option value="product-owner">Product Owner</option>
+                  <option value="scrum-master">Scrum Master</option>
+                  <option value="developer">Developer</option>
+                  <option value="designer">Designer</option>
+                  <option value="tester">Tester/QA</option>
+                  <option value="stakeholder">Stakeholder</option>
+                  <option value="student">Student</option>
+                  <option value="other">Annat</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-step" data-step="2">
+              <h2 class="form-title">Sprint Information</h2>
+              <p class="form-subtitle">
+                Berätta om dina behov och tillgänglighet för kommande sprint.
+              </p>
+              <div class="form-group">
+                <label class="form-label"
+                  >Vilket typ av scrum meeting? *</label
+                >
+                <div class="radio-group">
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      id="daily"
+                      name="meetingType"
+                      value="daily"
+                      required
+                    />
+                    <label for="daily">Daily Standup</label>
+                  </div>
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      id="planning"
+                      name="meetingType"
+                      value="planning"
+                    />
+                    <label for="planning">Sprint Planning</label>
+                  </div>
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      id="review"
+                      name="meetingType"
+                      value="review"
+                    />
+                    <label for="review">Sprint Review</label>
+                  </div>
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      id="retro"
+                      name="meetingType"
+                      value="retro"
+                    />
+                    <label for="retro">Sprint Retrospective</label>
+                  </div>
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      id="refinement"
+                      name="meetingType"
+                      value="refinement"
+                    />
+                    <label for="refinement">Backlog Refinement</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Tillgänglighet</label>
+                <div class="checkbox-group">
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="morning"
+                      name="availability[]"
+                      value="morning"
+                    />
+                    <label for="morning">Morgon (08:00-12:00)</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="afternoon"
+                      name="availability[]"
+                      value="afternoon"
+                    />
+                    <label for="afternoon">Eftermiddag (12:00-17:00)</label>
+                  </div>
+                  <div class="checkbox-item">
+                    <input
+                      type="checkbox"
+                      id="evening"
+                      name="availability[]"
+                      value="evening"
+                    />
+                    <label for="evening">Kväll (17:00-20:00)</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Projektets ungefärliga storlek</label>
+                <select class="form-select" name="projectSize">
+                  <option value="">Välj projektets omfattning</option>
+                  <option value="small">Litet projekt (1-2 veckor)</option>
+                  <option value="medium">Mediumstort projekt (1-2 månader)</option>
+                  <option value="large">Stort projekt (3-6 månader)</option>
+                  <option value="enterprise"
+                    >Enterprise projekt (6+ månader)</option
+                  >
+                </select>
+              </div>
+            </div>
+            <div class="form-step" data-step="3">
+              <h2 class="form-title">Bekräfta & Gå med</h2>
+              <p class="form-subtitle">
+                Lämna ett meddelande om specifika behov eller frågor inför
+                meetinget.
+              </p>
+              <div class="form-group">
+                <label class="form-label">Meddelande/Kommentarer</label>
+                <textarea
+                  class="form-textarea"
+                  name="message"
+                  placeholder="Berätta om specifika utmaningar, mål eller frågor du vill diskutera under meetinget..."
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <div class="checkbox-item">
+                  <input type="checkbox" id="terms" name="terms" required />
+                  <label for="terms"
+                    >Jag förstår att detta är ett scrum meeting och kommer att
+                    delta aktivt *</label
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="notifications"
+                    name="notifications"
+                  />
+                  <label for="notifications"
+                    >Få påminnelser och uppdateringar om meetinget via
+                    e-post</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="form-step" data-step="success" id="successStep">
+              <div class="success-message">
+                <div class="success-icon">
+                  <svg
+                    class="success-icon-svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h2 class="success-title">Välkommen till teamet!</h2>
+                <p class="success-text">
+                  Du är nu registrerad för scrum meetinget. Du kommer få en
+                  kalenderinbjudan och mer information via e-post inom kort.
+                  <br /><br />
+                  <strong>Nästa steg:</strong> Förbered dig genom att tänka på
+                  vad du gjort, planerar att göra och eventuella blockeringar.
+                </p>
+              </div>
+            </div>
+            <div class="button-group" id="buttonGroup">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                id="prevBtn"
+                style="display: none;"
+              >
+                Föregående
+              </button>
+              <button type="button" class="btn btn-primary" id="nextBtn"
+                >Nästa</button
+              >
+            </div>
+          </form>
+        </div>
+        <div class="why-choose-us-heading">
+          <h3 class="section-title">Varför använda vår tjänst?</h3>
+          <p>
+            Den är bara helt förträfflig helt enkelt - Ingvar Kamprad, IKEA
+          </p>
+          <p>
+            Den är bara helt förträfflig helt enkelt - Ingvar Kamprad, IKEA
+          </p>
+        </div>
+      </div>
+      <div class="why-choose-us">
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 13.5l6.002-4.5V12h6.75l1.086-.75c.677-.472 1.5-.123 1.5.75V21a.75.75 0 01-.75.75h-15a.75.75 0 01-.75-.75V6.75c0-.966.908-1.464 1.769-.854zM6 12L12 6"
+                />
+              </svg>
+            </div>
+            <h4 class="feature-title">Snabbare Leverans</h4>
+            <p class="feature-description">
+              Iterativ utveckling ger snabbare resultat och kontinuerlig feedback
+              från stakeholders.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.5 12a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 19a7 7 0 100-14 7 7 0 000 14z"
+                />
+              </svg>
+            </div>
+            <h4 class="feature-title">Bättre Fokus</h4>
+            <p class="feature-description">
+              Daily standups och sprint goals håller teamet fokuserat på rätt
+              prioriteringar.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.75 3.75v4.5M14.25 3.75v4.5M11.25 16.5h1.5m-1.5 3.75h1.5M21 12a9 9 0 11-18 0 9 9 0 0118 0zM12 12a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                />
+              </svg>
+            </div>
+            <h4 class="feature-title">Kontinuerlig Förbättring</h4>
+            <p class="feature-description">
+              Retrospektiv hjälper teamet att lära sig och förbättras med varje
+              sprint.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      /* Din CSS-kod här */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Animated background particles */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(74, 222, 128, 0.6);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .particle:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .particle:nth-child(2) {
+        left: 20%;
+        animation-delay: 1s;
+      }
+      .particle:nth-child(3) {
+        left: 30%;
+        animation-delay: 2s;
+      }
+      .particle:nth-child(4) {
+        left: 40%;
+        animation-delay: 3s;
+      }
+      .particle:nth-child(5) {
+        left: 50%;
+        animation-delay: 4s;
+      }
+      .particle:nth-child(6) {
+        left: 60%;
+        animation-delay: 5s;
+      }
+      .particle:nth-child(7) {
+        left: 70%;
+        animation-delay: 1.5s;
+      }
+      .particle:nth-child(8) {
+        left: 80%;
+        animation-delay: 2.5s;
+      }
+      .particle:nth-child(9) {
+        left: 90%;
+        animation-delay: 3.5s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10%,
+        90% {
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-10vh) rotate(180deg);
+        }
+      }
+
+      @keyframes autoRotate {
+        0%,
+        100% {
+          transform: perspective(1000px) rotateX(5deg) rotateY(-8deg);
+        }
+        50% {
+          transform: perspective(1000px) rotateX(5deg) rotateY(8deg);
+        }
+      }
+
+      /* Main container */
+      .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column; /* Nu är allt staplat igen */
+        align-items: center; /* Centrerar horisontellt */
+        justify-content: center;
+        padding: 2rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .top-flex-wrapper {
+        display: flex;
+        flex-direction: row; /* Denna nya wrapper placerar formulär och rubrik sida vid sida */
+        align-items: flex-start; /* Jämnar ut toppen av elementen */
+        gap: 2rem;
+        width: 100%;
+        max-width: 1000px;
+        margin-bottom: 3rem; /* Skapar utrymme under denna sektion */
+      }
+
+      .why-choose-us-heading {
+        flex: 1;
+        max-width: 500px;
+        padding-top: 2rem;
+      }
+
+      .why-choose-us-heading p {
+        color: white;
+      }
+
+      /* Glass card */
+      .glass-card {
+        flex: 1; /* Låter elementet växa för att fylla utrymme */
+        max-width: 500px;
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 24px;
+        padding: 3rem 2.5rem;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2),
+          0 0 0 1px rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        transform: perspective(1000px) rotateX(5deg);
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        width: 100%;
+        animation: autoRotate 4s ease-in-out infinite;
+      }
+
+      .glass-card.user-interacting {
+        animation: none;
+      }
+
+      .glass-card:hover {
+        transform: perspective(1000px) rotateX(0deg) translateY(-5px);
+        box-shadow: 0 35px 60px rgba(0, 0, 0, 0.25),
+          0 0 0 1px rgba(255, 255, 255, 0.2);
+      }
+
+      .icon-title {
+        height: 2.5rem;
+        width: 2.5rem;
+        margin-right: 0.75rem;
+        color: #22c55e;
+        vertical-align: middle;
+        stroke-width: 1.5px;
+      }
+
+      /* Progress bar */
+      .progress-container {
+        margin-bottom: 2rem;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 6px;
+        background: rgba(30, 41, 59, 0.2);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #4ade80, #22c55e);
+        border-radius: 10px;
+        transition: width 0.3s ease;
+        width: 33.33%;
+      }
+
+      .step-indicator {
+        display: flex;
+        justify-content: space-between;
+        color: rgba(30, 41, 59, 0.6);
+        font-size: 0.8rem;
+      }
+
+      .step-indicator .active {
+        color: #22c55e;
+        font-weight: 600;
+      }
+
+      /* Form steps */
+      .form-step {
+        display: none;
+        animation: slideIn 0.5s ease-out;
+      }
+
+      .form-step.active {
+        display: block;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .form-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .form-subtitle {
+        color: #64748b;
+        text-align: center;
+        margin-bottom: 2rem;
+        line-height: 1.5;
+      }
+
+      /* Form elements */
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-label {
+        display: block;
+        color: #374151;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        padding: 1rem;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        color: #1e293b;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: #4ade80;
+        box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.1);
+        background: #ffffff;
+      }
+
+      .form-input::placeholder,
+      .form-textarea::placeholder {
+        color: #94a3b8;
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      /* Radio buttons */
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .radio-item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 0.75rem;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .radio-item:hover {
+        background: #f1f5f9;
+        border-color: #cbd5e1;
+      }
+
+      .radio-item input[type="radio"] {
+        margin-right: 0.75rem;
+        accent-color: #4ade80;
+      }
+
+      .radio-item label {
+        color: #374151;
+        cursor: pointer;
+        flex: 1;
+      }
+
+      /* Checkbox group */
+      .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 0.75rem;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .checkbox-item:hover {
+        background: #f1f5f9;
+        border-color: #cbd5e1;
+      }
+
+      .checkbox-item input[type="checkbox"] {
+        margin-right: 0.75rem;
+        accent-color: #4ade80;
+      }
+
+      .checkbox-item label {
+        color: #374151;
+        cursor: pointer;
+        flex: 1;
+      }
+
+      /* Buttons */
+      .button-group {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .btn {
+        flex: 1;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary {
+        background: linear-gradient(45deg, #4ade80, #22c55e);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(74, 222, 128, 0.3);
+      }
+
+      .btn-secondary {
+        background: #f1f5f9;
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+      }
+
+      .btn-secondary:hover {
+        background: #e2e8f0;
+      }
+
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* Success message */
+      .success-message {
+        text-align: center;
+        color: #1e293b;
+      }
+
+      .success-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        color: #4ade80;
+        display: inline-block;
+      }
+
+      .success-icon-svg {
+        height: 4rem;
+        width: 4rem;
+        color: #4ade80;
+        stroke-width: 1.5px;
+      }
+
+      .success-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .success-text {
+        color: #64748b;
+        line-height: 1.6;
+      }
+
+      /* Why Choose Us Section */
+      .why-choose-us {
+        margin-top: 0;
+        padding: 0 2rem;
+        max-width: 1000px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        text-align: left;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .feature-card {
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .feature-card:hover::before {
+        opacity: 1;
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      }
+
+      .feature-icon svg {
+        height: 3rem;
+        width: 3rem;
+        color: #4ade80;
+        stroke-width: 1.5px;
+      }
+
+      .feature-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 0.75rem;
+      }
+
+      .feature-description {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      /* Responsive design */
+      @media (max-width: 1024px) {
+        .top-flex-wrapper {
+          flex-direction: column;
+          gap: 0;
+          margin-bottom: 2rem;
+        }
+
+        .why-choose-us-heading {
+          max-width: none;
+          width: 100%;
+        }
+
+        .glass-card {
+          margin-bottom: 2rem;
+          transform: none;
+          animation: none;
+        }
+
+        .why-choose-us {
+          padding-top: 0;
+        }
+
+        .section-title {
+          margin-top: 0;
+          margin-bottom: 2rem;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .glass-card {
+          padding: 2rem 1.5rem;
+          margin: 1rem 0 2rem 0;
+        }
+        .form-title {
+          font-size: 1.5rem;
+        }
+        .button-group {
+          flex-direction: column;
+        }
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        .why-choose-us {
+          padding: 0 1rem;
+        }
+      }
+    </style>
+
+    <script>
+      let currentStep = 1;
+      const totalSteps = 3;
+
+      const stepValidation = {
+        1: ["fullName", "email"],
+        2: ["meetingType"],
+        3: ["terms"],
+      };
+
+      function updateProgress() {
+        const progressFill = document.getElementById("progressFill");
+        const percentage = (currentStep / totalSteps) * 100;
+        progressFill.style.width = percentage + "%";
+
+        for (let i = 1; i <= totalSteps; i++) {
+          const stepEl = document.getElementById("step" + i);
+          if (stepEl) {
+            if (i <= currentStep) {
+              stepEl.classList.add("active");
+            } else {
+              stepEl.classList.remove("active");
+            }
+          }
+        }
+      }
+
+      function showStep(step) {
+        const steps = document.querySelectorAll(".form-step");
+        steps.forEach((s) => s.classList.remove("active"));
+
+        const currentStepEl = document.querySelector(`[data-step="${step}"]`);
+        if (currentStepEl) {
+          currentStepEl.classList.add("active");
+        }
+
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const buttonGroup = document.getElementById("buttonGroup");
+
+        if (step === "success") {
+          buttonGroup.style.display = "none";
+          return;
+        }
+
+        buttonGroup.style.display = "flex";
+        prevBtn.style.display = step === 1 ? "none" : "block";
+
+        if (step === totalSteps) {
+          nextBtn.textContent = "Gå med i meetinget";
+        } else {
+          nextBtn.textContent = "Nästa";
+        }
+      }
+
+      function validateStep(step) {
+        const requiredFields = stepValidation[step];
+        if (!requiredFields) return true;
+
+        let isValid = true;
+
+        for (const fieldName of requiredFields) {
+          const field = document.querySelector(`[name="${fieldName}"]`);
+          if (!field) continue;
+
+          if (field.type === "radio") {
+            const radioGroup = document.querySelectorAll(
+              `[name="${fieldName}"]`
+            );
+            const isChecked = Array.from(radioGroup).some((radio) => radio.checked);
+            if (!isChecked) {
+              isValid = false;
+              radioGroup.forEach((radio) => {
+                radio.closest(".radio-item").style.borderColor = "#ef4444";
+              });
+            } else {
+              radioGroup.forEach((radio) => {
+                radio.closest(".radio-item").style.borderColor = "";
+              });
+            }
+          } else if (field.type === "checkbox") {
+            if (!field.checked) {
+              isValid = false;
+              field.closest(".checkbox-item").style.borderColor = "#ef4444";
+            } else {
+              field.closest(".checkbox-item").style.borderColor = "";
+            }
+          } else {
+            if (!field.value.trim()) {
+              isValid = false;
+              field.style.borderColor = "#ef4444";
+            } else {
+              field.style.borderColor = "";
+
+              if (field.type === "email") {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(field.value)) {
+                  isValid = false;
+                  field.style.borderColor = "#ef4444";
+                }
+              }
+            }
+          }
+        }
+
+        return isValid;
+      }
+
+      function nextStep() {
+        if (!validateStep(currentStep)) {
+          const card = document.querySelector(".glass-card");
+          card.style.animation = "shake 0.5s ease-in-out";
+          setTimeout(() => {
+            card.style.animation = card.classList.contains("user-interacting")
+              ? "none"
+              : "autoRotate 4s ease-in-out infinite";
+          }, 500);
+          return;
+        }
+
+        if (currentStep < totalSteps) {
+          currentStep++;
+          showStep(currentStep);
+          updateProgress();
+        } else {
+          submitForm();
+        }
+      }
+
+      function prevStep() {
+        if (currentStep > 1) {
+          currentStep--;
+          showStep(currentStep);
+          updateProgress();
+        }
+      }
+
+      function submitForm() {
+        setTimeout(() => {
+          showStep("success");
+          celebrate();
+        }, 500);
+      }
+
+      function celebrate() {
+        for (let i = 0; i < 50; i++) {
+          createConfetti();
+        }
+      }
+
+      function createConfetti() {
+        const confetti = document.createElement("div");
+        confetti.style.position = "fixed";
+        confetti.style.width = "10px";
+        confetti.style.height = "10px";
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.top = "-10px";
+        confetti.style.borderRadius = "50%";
+        confetti.style.pointerEvents = "none";
+        confetti.style.zIndex = "1000";
+
+        document.body.appendChild(confetti);
+
+        confetti.animate(
+          [
+            { transform: "translateY(0px) rotate(0deg)", opacity: 1 },
+            { transform: `translateY(100vh) rotate(720deg)`, opacity: 0 },
+          ],
+          {
+            duration: 3000,
+            easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          }
+        ).onfinish = () => confetti.remove();
+      }
+
+      const shakeKeyframes = `
+			@keyframes shake {
+				0%, 100% { transform: perspective(1000px) rotateX(5deg) translateX(0); }
+				25% { transform: perspective(1000px) rotateX(5deg) translateX(-5px); }
+				75% { transform: perspective(1000px) rotateX(5deg) translateX(5px); }
+			}
+		`;
+      const styleSheet = document.createElement("style");
+      styleSheet.textContent = shakeKeyframes;
+      document.head.appendChild(styleSheet);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const nextBtn = document.getElementById("nextBtn");
+        const prevBtn = document.getElementById("prevBtn");
+
+        if (nextBtn) {
+          nextBtn.addEventListener("click", nextStep);
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener("click", prevStep);
+        }
+
+        showStep(1);
+        updateProgress();
+
+        const card = document.querySelector(".glass-card");
+        const inputs = document.querySelectorAll("input, select, textarea");
+
+        const stopAutoRotate = () => {
+          if (card) {
+            card.style.animation = "none";
+            card.style.transform =
+              "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+          }
+        };
+
+        inputs.forEach((input) => {
+          input.addEventListener("focus", stopAutoRotate);
+        });
+
+        inputs.forEach((input) => {
+          input.addEventListener("input", () => {
+            input.style.borderColor = "";
+            if (input.closest(".radio-item")) {
+              input.closest(".radio-item").style.borderColor = "";
+            }
+            if (input.closest(".checkbox-item")) {
+              input.closest(".checkbox-item").style.borderColor = "";
+            }
+          });
+        });
+
+        if (card) {
+          card.addEventListener("mousemove", (e) => {
+            // Your mousemove logic can be added here
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

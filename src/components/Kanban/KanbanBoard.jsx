@@ -1,31 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Column from "./Column";
 import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-
-const initialTasks = {
-  todo: [
-    { id: "1", title: "Design Homepage", description: "Create wireframes and finalize homepage.", status: "Todo", assignedTo: "Alice", dueDate: "2025-08-20", priority: "High" },
-    { id: "2", title: "Setup Database", description: "Initialize Supabase and configure tables.", status: "Todo", assignedTo: "Bob", dueDate: "2025-08-25", priority: "Medium" },
-  ],
-  inProgress: [
-    { id: "3", title: "Build Login Page", description: "Implement form validation and auth.", status: "In Progress", assignedTo: "Charlie", dueDate: "2025-08-22", priority: "High" },
-  ],
-  done: [
-    { id: "4", title: "Project Setup", description: "Initialize project with Astro + React.", status: "Done", assignedTo: "Dave", dueDate: "2025-08-15", priority: "Low" },
-  ],
-};
+import { supabase } from "../../utils/supabase";
 
 export default function KanbanBoard() {
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, setTasks] = useState({ todo: [], progress: [], done: [] });
   const sensors = useSensors(useSensor(PointerSensor));
+
+  // --- Hämta tasks från Supabase ---
+  const fetchTasks = async () => {
+    const { data, error } = await supabase
+      .from("todotasks")
+      .select("*")
+      .order("due_date", { ascending: true });
+
+    if (!error && data) {
+      const todo = data.filter(t => t.status === "todo");
+      const progress = data.filter(t => t.status === "progress");
+      const done = data.filter(t => t.status === "done");
+      setTasks({ todo, progress, done });
+    } else {
+      console.error("Fel vid hämtning:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks();
+
+    // Realtidslyssnare
+    const channel = supabase
+      .channel("todotasks-realtime")
+      .on("postgres_changes", { event: "*", schema: "public", table: "todotasks" }, () => fetchTasks())
+      .subscribe();
+
+    return () => supabase.removeChannel(channel);
+  }, []);
+
+  // --- Uppdatera task i databasen ---
+  const updateTaskStatus = async (taskId, newStatus) => {
+    const { data, error } = await supabase
+      .from("todotasks")
+      .update({ status: newStatus })
+      .eq("id", taskId);
+
+    if (error) console.error("Fel vid uppdatering:", error);
+  };
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
     if (!over) return;
 
-    let sourceColumnId = Object.keys(tasks).find(col => tasks[col].some(task => task.id === active.id));
-    let destColumnId = Object.keys(tasks).find(col => tasks[col].some(task => task.id === over.id) || over.id === col);
+    const sourceColumnId = Object.keys(tasks).find(col => tasks[col].some(task => task.id === active.id));
+    const destColumnId = Object.keys(tasks).find(col => tasks[col].some(task => task.id === over.id) || over.id === col);
     if (!sourceColumnId || !destColumnId) return;
 
     const sourceIndex = tasks[sourceColumnId].findIndex(task => task.id === active.id);
@@ -38,21 +65,24 @@ export default function KanbanBoard() {
     } else {
       const sourceTasks = Array.from(tasks[sourceColumnId]);
       const [movedTask] = sourceTasks.splice(sourceIndex, 1);
-      movedTask.status = destColumnId === "todo" ? "Todo" :
-                         destColumnId === "inProgress" ? "In Progress" : "Done";
+
+      // Sätt ny status
+      const newStatus = destColumnId === "todo" ? "todo" :
+                        destColumnId === "progress" ? "progress" : "done";
+      movedTask.status = newStatus;
+
       const destTasks = Array.from(tasks[destColumnId]);
       const finalDestIndex = destIndex === -1 ? 0 : destIndex;
       destTasks.splice(finalDestIndex, 0, movedTask);
 
-      setTasks(prev => ({
-        ...prev,
-        [sourceColumnId]: sourceTasks,
-        [destColumnId]: destTasks
-      }));
+      setTasks(prev => ({ ...prev, [sourceColumnId]: sourceTasks, [destColumnId]: destTasks }));
+
+      // Uppdatera i databasen
+      updateTaskStatus(movedTask.id, newStatus);
     }
   };
 
-  // --- Progress calculation ---
+  // --- Progress ---
   const totalTasks = Object.values(tasks).flat().length;
   const completedTasks = tasks.done.length;
   const progress = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
@@ -80,7 +110,7 @@ export default function KanbanBoard() {
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <div className="flex justify-between gap-8">
           <Column columnId="todo" columnName="Todo" tasks={tasks.todo} />
-          <Column columnId="inProgress" columnName="In Progress" tasks={tasks.inProgress} />
+          <Column columnId="progress" columnName="In Progress" tasks={tasks.progress} />
           <Column columnId="done" columnName="Done" tasks={tasks.done} />
         </div>
       </DndContext>

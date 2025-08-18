@@ -37,7 +37,7 @@ export default function TodoForm() {
     };
 
     try {
-      const { error } = await supabase.from("tasks").insert([payload]); // array är mest framtidssäkert
+      const { error } = await supabase.from("todotasks").insert([payload]); // array är mest framtidssäkert
 
       if (error) throw error;
 

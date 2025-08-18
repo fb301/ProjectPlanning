@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import FormInput from "./FormInput.jsx";
-//import { supabase } from "../utils/supabase";
+import { supabase } from "../utils/supabase";
 
 export default function TodoForm() {
   const initialFormState = {
@@ -27,25 +27,17 @@ export default function TodoForm() {
     setErrorMsg("");
     setLoading(true);
 
-    // Om du har en DATE-kolumn i Supabase kan du skicka YYYY-MM-DD direkt.
-    // Om du har TIMESTAMP, konvertera:
-    // const due_at = task.dueDate ? new Date(task.dueDate).toISOString() : null;
-
     const payload = {
       title: task.title.trim(),
       description: task.description.trim() || null,
       status: task.status, // 'todo' | 'progress' | 'done'
       priority: task.priority, // 'low' | 'medium' | 'high'
-      assigned_to: task.assignedTo || null, // ev. använd user_id senare
-      due_date: task.dueDate || null, // matcha din kolumntyp (DATE eller TIMESTAMP)
+      assigned_to: task.assignedTo || null,
+      due_date: task.dueDate || null, // YYYY-MM-DD funkar direkt mot DATE-kolumn
     };
 
     try {
-      const { data, error } = await supabase
-        .from("tasks")
-        .insert(payload)
-        .select()
-        .single();
+      const { error } = await supabase.from("tasks").insert([payload]); // array är mest framtidssäkert
 
       if (error) throw error;
 

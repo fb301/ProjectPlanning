@@ -24,14 +24,8 @@ export default function KanbanBoard() {
     const { active, over } = event;
     if (!over) return;
 
-    let sourceColumnId = Object.keys(tasks).find(col =>
-      tasks[col].some(task => task.id === active.id)
-    );
-
-    let destColumnId = Object.keys(tasks).find(col =>
-      tasks[col].some(task => task.id === over.id) || over.id === col
-    );
-
+    let sourceColumnId = Object.keys(tasks).find(col => tasks[col].some(task => task.id === active.id));
+    let destColumnId = Object.keys(tasks).find(col => tasks[col].some(task => task.id === over.id) || over.id === col);
     if (!sourceColumnId || !destColumnId) return;
 
     const sourceIndex = tasks[sourceColumnId].findIndex(task => task.id === active.id);
@@ -40,17 +34,12 @@ export default function KanbanBoard() {
 
     if (isSameColumn) {
       const newTasks = Array.from(tasks[sourceColumnId]);
-      setTasks(prev => ({
-        ...prev,
-        [sourceColumnId]: arrayMove(newTasks, sourceIndex, destIndex),
-      }));
+      setTasks(prev => ({ ...prev, [sourceColumnId]: arrayMove(newTasks, sourceIndex, destIndex) }));
     } else {
       const sourceTasks = Array.from(tasks[sourceColumnId]);
       const [movedTask] = sourceTasks.splice(sourceIndex, 1);
-      movedTask.status =
-        destColumnId === "todo" ? "Todo" :
-        destColumnId === "inProgress" ? "In Progress" : "Done";
-
+      movedTask.status = destColumnId === "todo" ? "Todo" :
+                         destColumnId === "inProgress" ? "In Progress" : "Done";
       const destTasks = Array.from(tasks[destColumnId]);
       const finalDestIndex = destIndex === -1 ? 0 : destIndex;
       destTasks.splice(finalDestIndex, 0, movedTask);
@@ -58,16 +47,35 @@ export default function KanbanBoard() {
       setTasks(prev => ({
         ...prev,
         [sourceColumnId]: sourceTasks,
-        [destColumnId]: destTasks,
+        [destColumnId]: destTasks
       }));
     }
   };
 
+  // --- Progress calculation ---
+  const totalTasks = Object.values(tasks).flat().length;
+  const completedTasks = tasks.done.length;
+  const progress = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
   return (
-    <div className="bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 min-h-screen p-10">
-      <h1 className="text-5xl font-extrabold text-center mb-10 text-indigo-900 font-rubrik">
+    <div className="bg-gray-900 min-h-screen p-6 md:px-12 lg:px-24">
+      <h1 className="text-5xl font-extrabold text-center mb-8 text-gray-100 font-rubrik">
         Project Kanban Board
       </h1>
+
+      {/* Progress Bar */}
+      <div className="w-full max-w-4xl mx-auto mb-12">
+        <div className="flex justify-between text-sm text-gray-300 mb-1">
+          <span>{completedTasks} of {totalTasks} tasks completed</span>
+          <span>{progress}%</span>
+        </div>
+        <div className="w-full bg-gray-700 rounded-lg h-5 overflow-hidden">
+          <div
+            className="h-5 bg-gradient-to-r from-green-400 to-green-600 transition-all duration-500"
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+      </div>
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <div className="flex justify-between gap-8">

@@ -5,15 +5,15 @@ import { CSS } from "@dnd-kit/utilities";
 import { useDroppable } from "@dnd-kit/core";
 
 const columnBg = {
-  todo: "bg-blue-100",
-  inProgress: "bg-yellow-100",
-  done: "bg-green-100",
+  todo: "bg-blue-900",
+  inProgress: "bg-yellow-900",
+  done: "bg-green-900",
 };
 
 const columnTitleColor = {
-  todo: "text-blue-900",
-  inProgress: "text-yellow-800",
-  done: "text-green-900",
+  todo: "text-blue-200",
+  inProgress: "text-yellow-200",
+  done: "text-green-200",
 };
 
 export default function Column({ columnId, columnName, tasks }) {
@@ -31,7 +31,7 @@ export default function Column({ columnId, columnName, tasks }) {
             <SortableCard key={task.id} id={task.id} task={task} />
           ))
         ) : (
-          <div className="p-6 rounded-xl border-2 border-dashed border-gray-400 text-gray-500 text-center h-24 flex items-center justify-center">
+          <div className="p-6 rounded-xl border-2 border-dashed border-gray-600 text-gray-400 text-center h-24 flex items-center justify-center">
             Drop here
           </div>
         )}

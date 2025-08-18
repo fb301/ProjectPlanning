@@ -48,55 +48,56 @@ import {
         data-label="Gantt"
       >
         <ActivityLogIcon width="24" height="24" />
-
-        href="/landingpage"
-        class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
-        data-label="Landningssida"
-      >
-        <RocketIcon width="24" height="24" />
+        <a
+          href="/landingpage"
+          class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
+          data-label="Landningssida"
+        >
+          <RocketIcon width="24" height="24" />
+        </a>
       </a>
     </nav>
   </div>
-</aside>
 
-<script>
-  const menuButton = document.querySelector(".menu-button");
-  const sidebar = document.getElementById("sidebar");
-  const sidebarItems = document.querySelectorAll(".sidebar-item");
+  <script>
+    const menuButton = document.querySelector(".menu-button");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarItems = document.querySelectorAll(".sidebar-item");
 
-  menuButton?.addEventListener("click", () => {
-    if (!sidebar) return;
+    menuButton?.addEventListener("click", () => {
+      if (!sidebar) return;
 
-    const isExpanded = sidebar.dataset.expanded === "true";
+      const isExpanded = sidebar.dataset.expanded === "true";
 
-    if (isExpanded) {
-      sidebar.classList.remove("w-64");
-      sidebar.classList.add("w-16");
-      sidebar.dataset.expanded = "false";
+      if (isExpanded) {
+        sidebar.classList.remove("w-64");
+        sidebar.classList.add("w-16");
+        sidebar.dataset.expanded = "false";
 
-      sidebarItems.forEach((item) => {
-        const existingSpan = item.querySelector("span");
-        if (existingSpan) {
-          existingSpan.remove();
-        }
-      });
-    } else {
-      sidebar.classList.remove("w-16");
-      sidebar.classList.add("w-64");
-      sidebar.dataset.expanded = "true";
-
-      setTimeout(() => {
         sidebarItems.forEach((item) => {
-          const htmlItem = item as HTMLElement;
-          const labelText = htmlItem.dataset.label;
-          if (labelText && !item.querySelector("span")) {
-            const span = document.createElement("span");
-            span.className = "ml-3 whitespace-nowrap";
-            span.textContent = labelText;
-            item.appendChild(span);
+          const existingSpan = item.querySelector("span");
+          if (existingSpan) {
+            existingSpan.remove();
           }
         });
-      }, 150);
-    }
-  });
-</script>
+      } else {
+        sidebar.classList.remove("w-16");
+        sidebar.classList.add("w-64");
+        sidebar.dataset.expanded = "true";
+
+        setTimeout(() => {
+          sidebarItems.forEach((item) => {
+            const htmlItem = item as HTMLElement;
+            const labelText = htmlItem.dataset.label;
+            if (labelText && !item.querySelector("span")) {
+              const span = document.createElement("span");
+              span.className = "ml-3 whitespace-nowrap";
+              span.textContent = labelText;
+              item.appendChild(span);
+            }
+          });
+        }, 150);
+      }
+    });
+  </script>
+</aside>

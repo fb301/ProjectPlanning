@@ -42,10 +42,10 @@ export default function ActiveTaskCount({ initialCount = 0 }) {
         console.log("Subscription status:", status);
       });
 
-    // Fallback: Poll every 5 seconds if real-time doesn't work
-    // const pollInterval = setInterval(() => {
-    //   updateCount();
-    // }, 5000);
+    // Fallback: Poll every 60 seconds if real-time doesn't work
+    const pollInterval = setInterval(() => {
+      updateCount();
+    }, 60000);
 
     // Cleanup subscription and polling on unmount
     return () => {

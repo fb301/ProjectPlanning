@@ -37,28 +37,3 @@ if (error) {
     </div>
   </div>
 </div>
-<!-- 
-<script type="module">
-  import { supabase } from "../../../utils/supabase";
-
-  async function updateCount() {
-    const { count } = await supabase
-      .from("todotasks")
-      .select("*", { count: "exact" })
-      .in("status", ["progress", "todo"]);
-    document.getElementById("active-task-count").textContent = count ?? 0;
-  }
-
-  // Initial update
-  updateCount();
-
-  // Subscribe to changes in the todotasks table
-  const channel = supabase
-    .channel("realtime-tasks")
-    .on(
-      "postgres_changes",
-      { event: "*", schema: "public", table: "todotasks" },
-      () => updateCount()
-    )
-    .subscribe();
-</script> -->

@@ -4,6 +4,8 @@ import {
   FileTextIcon,
   LayoutIcon,
   HamburgerMenuIcon,
+  RocketIcon,
+  ActivityLogIcon, // Ny ikon importeras
 } from "@radix-ui/react-icons";
 ---
 
@@ -38,6 +40,13 @@ import {
         data-label="Taskform"
       >
         <FileTextIcon width="24" height="24" />
+      </a>
+      <a
+        href="/ganttpage"
+        class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
+        data-label="Gantt"
+      >
+        <ActivityLogIcon width="24" height="24" />
       </a>
     </nav>
   </div>

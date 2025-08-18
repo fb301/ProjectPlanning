@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Sidebar from "../components/Sidebar.astro";
 import TodoForm from "../components/TodoForm.jsx";
+import TodoTaskList from "../components/TodoTaskList.jsx";
 ---
 
 <Layout>
@@ -9,4 +10,5 @@ import TodoForm from "../components/TodoForm.jsx";
   <div class="min-h-screen flex items-center justify-center">
     <TodoForm client:load />
   </div>
+  <!-- <TodoTaskList client:load /> -->
 </Layout>

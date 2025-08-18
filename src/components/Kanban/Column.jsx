@@ -4,15 +4,16 @@ import { SortableContext, verticalListSortingStrategy, useSortable } from "@dnd-
 import { CSS } from "@dnd-kit/utilities";
 import { useDroppable } from "@dnd-kit/core";
 
+// Matchar nu de kolumn-id som skickas från KanbanBoard
 const columnBg = {
   todo: "bg-blue-900",
-  inProgress: "bg-yellow-900",
+  progress: "bg-yellow-900",
   done: "bg-green-900",
 };
 
 const columnTitleColor = {
   todo: "text-blue-200",
-  inProgress: "text-yellow-200",
+  progress: "text-yellow-200",
   done: "text-green-200",
 };
 

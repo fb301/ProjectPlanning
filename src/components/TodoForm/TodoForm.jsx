@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import FormInput from "./FormInput.jsx";
-import { supabase } from "../utils/supabase";
+import { supabase } from "../../utils/supabase";
 
 export default function TodoForm() {
   const initialFormState = {

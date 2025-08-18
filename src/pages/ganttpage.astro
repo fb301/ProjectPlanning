@@ -1,14 +1,19 @@
 ---
 import '../styles/gantt.css';
 import Sidebar from "../components/Sidebar.astro";
+import Layout from "../layouts/Layout.astro";
 // Eventuella andra imports, t.ex. din Sidebar-komponent
 ---
 
+<Layout>
+<div class="page-container">
+    <Sidebar />
+    <div class="content-container">
+        <div class="header">
+            <h1>WeeeDidIt projekt med Astro</p></h1>
+            <p>Gantt-schema för group Green • Start: 1 augusti 2025 • Presentation: 22 augusti 2025</p>
+        </div>
 
-<div class="header">
-    <h1>WeeeDidIt projekt med Astro</p></h1>
-    <p>Gantt-schema för group Green • Start: 1 augusti 2025 • Presentation: 22 augusti 2025</p>
-</div>
 
 <div class="legend">
     <div class="legend-item">
@@ -408,3 +413,4 @@ import Sidebar from "../components/Sidebar.astro";
         </ul>
     </div>
 </div>
+</Layout>

@@ -3,8 +3,9 @@ import ActiveTasks from "./UI/ActiveTasks.astro";
 import CompletedTasks from "./UI/CompletedTasks.astro";
 import TeamMembers from "./UI/TeamMembers.astro";
 import TotalTasks from "./UI/TotalTasks.astro";
-import RecentProjects from "./UI/RecentProjects.astro";
+import UpcomingTasks from "./UI/UpcomingTasks.astro";
 import ActivityFeed from "./UI/ActivityFeed.astro";
+import UpcomingTasksList from "./UI/UpcomingTasksList.jsx";
 ---
 
 <!-- Dashboard Content -->
@@ -28,7 +29,7 @@ import ActivityFeed from "./UI/ActivityFeed.astro";
   <!-- Main Content Grid -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <!-- Recent Projects -->
-    <RecentProjects />
+    <UpcomingTasksList client:load />
 
     <!-- Activity Feed -->
     <ActivityFeed />

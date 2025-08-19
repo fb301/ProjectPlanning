@@ -1,10 +1,23 @@
+---
+import { supabase } from "../../../utils/supabase";
+
+const { count, error } = await supabase
+  .from("todotasks")
+  .select("*", { count: "exact" })
+  .in("status", ["done"]);
+
+if (error) {
+  console.error(error);
+}
+---
+
 <div
   class="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm"
 >
   <div class="flex items-center justify-between">
     <div>
       <p class="text-sm text-[var(--gray-11)] mb-1">Completed</p>
-      <p class="text-2xl font-semibold text-[var(--gray-12)]">18</p>
+      <p class="text-2xl font-semibold text-[var(--gray-12)]">{count}</p>
     </div>
     <div
       class="w-12 h-12 bg-green-100 rounded-[var(--radius-2)] flex items-center justify-center"

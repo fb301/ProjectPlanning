@@ -2,7 +2,7 @@
 import ActiveTasks from "./UI/ActiveTasks.astro";
 import CompletedTasks from "./UI/CompletedTasks.astro";
 import TeamMembers from "./UI/TeamMembers.astro";
-import TotalProjects from "./UI/TotalProjects.astro";
+import TotalTasks from "./UI/TotalTasks.astro";
 import RecentProjects from "./UI/RecentProjects.astro";
 import ActivityFeed from "./UI/ActivityFeed.astro";
 ---
@@ -21,8 +21,8 @@ import ActivityFeed from "./UI/ActivityFeed.astro";
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
     <ActiveTasks />
     <CompletedTasks />
+    <TotalTasks />
     <TeamMembers />
-    <TotalProjects />
   </div>
 
   <!-- Main Content Grid -->

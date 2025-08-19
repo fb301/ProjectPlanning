@@ -2,13 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import Sidebar from "../components/Sidebar.astro";
 import TodoForm from "../components/TodoForm/TodoForm.jsx";
-
 ---
 
 <Layout>
   <Sidebar />
-  <div class="min-h-screen flex items-center justify-center">
+  <div class="min-h-screen flex items-center justify-center gap-5">
     <TodoForm client:load />
+    <TodoForm id="8" client:load />
   </div>
-
 </Layout>

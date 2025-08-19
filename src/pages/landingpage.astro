@@ -12,7 +12,7 @@ import Header from '../components/Header.astro';
   <body>
      <footer class="company-footer">
     <div class="footer-container">
-      <h4 class="footer-heading">Used and trusted by multiple companiess</h4>
+      
       <div class="logos-grid">
         <img src="/logos/logo1.png" alt="Fiktiv logo 1" class="company-logo" />
         <img src="/logos/logo2.png" alt="Fiktiv logo 2" class="company-logo" />
@@ -121,7 +121,7 @@ import Header from '../components/Header.astro';
             <div class="form-step" data-step="2">
               <h2 class="form-title">Project Information</h2>
               <p class="form-subtitle">
-                Berätta om dina behov och tillgänglighet för kommande sprint.
+                Describe the project's purpose, its main goals, and the results you expect. Please also specify the key features or deliverables
               </p>
               <div class="form-group">
                 <label class="form-label"
@@ -145,7 +145,7 @@ import Header from '../components/Header.astro';
                       name="meetingType"
                       value="planning"
                     />
-                    <label for="planning">Sprint Planning</label>
+                    <label for="planning">Productlaunch</label>
                   </div>
                   <div class="radio-item">
                     <input
@@ -154,7 +154,7 @@ import Header from '../components/Header.astro';
                       name="meetingType"
                       value="review"
                     />
-                    <label for="review">Sprint Review</label>
+                    <label for="review">Maintanance</label>
                   </div>
                   <div class="radio-item">
                     <input
@@ -163,7 +163,7 @@ import Header from '../components/Header.astro';
                       name="meetingType"
                       value="retro"
                     />
-                    <label for="retro">Sprint Retrospective</label>
+                    <label for="retro">Merger</label>
                   </div>
                   <div class="radio-item">
                     <input
@@ -177,7 +177,7 @@ import Header from '../components/Header.astro';
                 </div>
               </div>
               <div class="form-group">
-                <label class="form-label">Tillgänglighet</label>
+                <label class="form-label">Timezone</label>
                 <div class="checkbox-group">
                   <div class="checkbox-item">
                     <input
@@ -186,7 +186,7 @@ import Header from '../components/Header.astro';
                       name="availability[]"
                       value="morning"
                     />
-                    <label for="morning">Morgon (08:00-12:00)</label>
+                    <label for="morning">New York</label>
                   </div>
                   <div class="checkbox-item">
                     <input
@@ -195,7 +195,7 @@ import Header from '../components/Header.astro';
                       name="availability[]"
                       value="afternoon"
                     />
-                    <label for="afternoon">Eftermiddag (12:00-17:00)</label>
+                    <label for="afternoon">Berlin</label>
                   </div>
                   <div class="checkbox-item">
                     <input
@@ -204,43 +204,41 @@ import Header from '../components/Header.astro';
                       name="availability[]"
                       value="evening"
                     />
-                    <label for="evening">Kväll (17:00-20:00)</label>
+                    <label for="evening">Tokyo</label>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label class="form-label">Projektets ungefärliga storlek</label>
+                <label class="form-label">Size of project</label>
                 <select class="form-select" name="projectSize">
-                  <option value="">Välj projektets omfattning</option>
-                  <option value="small">Litet projekt (1-2 veckor)</option>
-                  <option value="medium">Mediumstort projekt (1-2 månader)</option>
-                  <option value="large">Stort projekt (3-6 månader)</option>
+                  <option value="">Define Project Scope</option>
+                  <option value="small">Small project (1-2 weeks)</option>
+                  <option value="medium">Medium project (2 months or more)</option>
+                  <option value="large">Large project (3-6 months or more)</option>
                   <option value="enterprise"
-                    >Enterprise projekt (6+ månader)</option
+                    >Enterprise project (6+ months)</option
                   >
                 </select>
               </div>
             </div>
             <div class="form-step" data-step="3">
-              <h2 class="form-title">Bekräfta & Gå med</h2>
+              <h2 class="form-title">Confirm & Join us</h2>
               <p class="form-subtitle">
-                Lämna ett meddelande om specifika behov eller frågor inför
-                meetinget.
+                Time for kickoff.
               </p>
               <div class="form-group">
-                <label class="form-label">Meddelande/Kommentarer</label>
+                <label class="form-label"></label>
                 <textarea
                   class="form-textarea"
                   name="message"
-                  placeholder="Berätta om specifika utmaningar, mål eller frågor du vill diskutera under meetinget..."
+                  placeholder="Motivate your teammates with an inspirational start..."
                 ></textarea>
               </div>
               <div class="form-group">
                 <div class="checkbox-item">
                   <input type="checkbox" id="terms" name="terms" required />
                   <label for="terms"
-                    >Jag förstår att detta är ett scrum meeting och kommer att
-                    delta aktivt *</label
+                    >I agree to the general terms and conditions of purchase *</label
                   >
                 </div>
               </div>
@@ -252,8 +250,8 @@ import Header from '../components/Header.astro';
                     name="notifications"
                   />
                   <label for="notifications"
-                    >Få påminnelser och uppdateringar om meetinget via
-                    e-post</label
+                    >Yes I want weekly tips & tricks sent to my email
+                    </label
                   >
                 </div>
               </div>
@@ -278,11 +276,16 @@ import Header from '../components/Header.astro';
                 </div>
                 <h2 class="success-title">Welcome to the club of doers</h2>
                 <p class="success-text">
-                  Du är nu registrerad för scrum meetinget. Du kommer få en
-                  kalenderinbjudan och mer information via e-post inom kort.
+                  Welcome to the Team!
+Thank you for registering and creating your project with us. We're excited to have you on board!
+
+We've received your project details and a member of our team will be in touch shortly to review your needs and get the ball rolling.
+
+
                   <br /><br />
-                  <strong>Nästa steg:</strong> Förbered dig genom att tänka på
-                  vad du gjort, planerar att göra och eventuella blockeringar.
+                  <strong>In the meantime:</strong> feel free to explore our platform. You can find helpful guides in our Knowledge Base and connect with other users in the Community Forum.
+
+If you have any questions, don't hesitate to reach out. We're here to help you succeed.
                 </p>
               </div>
             </div>
@@ -293,10 +296,10 @@ import Header from '../components/Header.astro';
                 id="prevBtn"
                 style="display: none;"
               >
-                Föregående
+                Previous
               </button>
               <button type="button" class="btn btn-primary" id="nextBtn"
-                >Nästa</button
+                >Next step</button
               >
             </div>
           </form>
@@ -426,6 +429,10 @@ import Header from '../components/Header.astro';
       /* Förstärkt CSS för login-knappen */
 .logos-grid .login-button {
   display: flex !important;
+
+
+  gap: rem;
+
   align-items: center;
   justify-content: center;
   
@@ -1130,9 +1137,9 @@ import Header from '../components/Header.astro';
         prevBtn.style.display = step === 1 ? "none" : "block";
 
         if (step === totalSteps) {
-          nextBtn.textContent = "Gå med i meetinget";
+          nextBtn.textContent = "Launch my project";
         } else {
-          nextBtn.textContent = "Nästa";
+          nextBtn.textContent = "Next";
         }
       }
 

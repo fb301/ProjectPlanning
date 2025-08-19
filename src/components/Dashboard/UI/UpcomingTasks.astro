@@ -1,10 +1,29 @@
+---
+import { supabase } from "../../../utils/supabase";
+import UpcomingTasksList from "./UpcomingTasksList";
+
+const { data, error } = await supabase
+  .from("todotasks")
+  .select("*")
+  .order("due_date", { ascending: true });
+
+console.log(data, error);
+
+if (!error) {
+  data;
+} else {
+  console.error("Fel vid hämtning:", error);
+}
+---
+
 <div class="lg:col-span-2">
   <div
     class="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm"
   >
     <h2 class="text-lg font-semibold text-[var(--gray-12)] mb-4">
-      Recent Projects
+      Upcoming Tasks
     </h2>
+    <UpcomingTasksList client:load />
     <div class="space-y-4">
       <div
         class="flex items-center justify-between p-4 bg-[var(--gray-a2)] rounded-[var(--radius-2)]"

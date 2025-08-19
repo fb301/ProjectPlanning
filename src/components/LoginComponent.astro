@@ -1,0 +1,308 @@
+---
+// Du behöver inte importera React-ikoner i Astro-komponenten på detta sätt
+// Använd istället vanliga SVG-ikoner eller ladda dem på annat sätt
+---
+
+<button id="open-login-popup" class="login-button">
+  <svg class="login-icon" viewBox="0 0 20 20" fill="currentColor">
+    <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-2 0V4H5v12h10v-2a1 1 0 112 0v3a1 1 0 01-1 1H4a1 1 0 01-1-1V3z" clip-rule="evenodd" />
+    <path fill-rule="evenodd" d="M6 10a1 1 0 011-1h6l-2-2a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4A1 1 0 0111 14l2-2H7a1 1 0 01-1-1z" clip-rule="evenodd" />
+  </svg>
+  Already a doer?
+</button>
+
+<div id="login-popup-container" class="popup-container">
+  <div class="popup-content">
+    <button id="close-popup-button" class="close-button">&times;</button>
+    <h3>Välj hur du vill logga in</h3>
+    
+    <button id="google-login-button" class="social-login-button google-login">
+      <!-- Inline SVG för Google-ikon -->
+      <svg viewBox="0 0 24 24" class="social-icon">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+      </svg>
+      Logga in med Google
+    </button>
+    
+    <button id="facebook-login-button" class="social-login-button facebook-login">
+      <!-- Inline SVG för Facebook-ikon -->
+      <svg viewBox="0 0 24 24" class="social-icon">
+        <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+      Logga in med Facebook
+    </button>
+  </div>
+</div>
+
+<style>
+  .login-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .login-button:hover {
+    background: #374151;
+    transform: translateY(-1px);
+  }
+
+  .login-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+  }
+
+  .popup-container.visible {
+    display: flex;
+  }
+
+  .popup-content {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #6b7280;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .close-button:hover {
+    color: #374151;
+  }
+
+  .popup-content h3 {
+    margin: 0 0 30px 0;
+    text-align: center;
+    color: #1f2937;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .social-login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 20px;
+    margin-bottom: 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: white;
+    color: #374151;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .social-login-button:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+  }
+
+  .google-login:hover {
+    background: #fafafa;
+  }
+
+  .facebook-login:hover {
+    background: #f8faff;
+  }
+
+  .social-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  /* Responsiv design */
+  @media (max-width: 480px) {
+    .popup-content {
+      padding: 30px 20px;
+      margin: 20px;
+    }
+
+    .popup-content h3 {
+      font-size: 20px;
+    }
+
+    .social-login-button {
+      font-size: 15px;
+      padding: 12px 16px;
+    }
+  }
+</style>
+
+<script>
+  // Kontrollera om vi är på klientsidan innan vi kör kod
+  if (typeof window !== 'undefined') {
+    // Dynamisk import av Supabase för att undvika SSR-problem
+    let supabase;
+    
+    async function initSupabase() {
+      try {
+        const { createClient } = await import('@supabase/supabase-js');
+        
+        // Hämta environment variables från Astro
+        const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+        const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+        
+        if (!supabaseUrl || !supabaseAnonKey) {
+          console.error('Supabase configuration saknas. Kontrollera dina environment variables.');
+          return null;
+        }
+        
+        supabase = createClient(supabaseUrl, supabaseAnonKey);
+        return supabase;
+      } catch (error) {
+        console.error('Kunde inte ladda Supabase:', error);
+        return null;
+      }
+    }
+
+    // Vänta på att DOM:en laddas
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Initiera Supabase
+      const supabaseClient = await initSupabase();
+      
+      // Hitta alla element
+      const openPopupButton = document.getElementById('open-login-popup');
+      const popupContainer = document.getElementById('login-popup-container');
+      const closePopupButton = document.getElementById('close-popup-button');
+      const googleLoginButton = document.getElementById('google-login-button');
+      const facebookLoginButton = document.getElementById('facebook-login-button');
+
+      // Kontrollera att elementen finns
+      if (!openPopupButton || !popupContainer || !closePopupButton) {
+        console.error('Kunde inte hitta nödvändiga DOM-element');
+        return;
+      }
+
+      // Öppna popup
+      openPopupButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        popupContainer.classList.add('visible');
+        document.body.style.overflow = 'hidden'; // Förhindra scrollning
+      });
+
+      // Stäng popup-funktioner
+      function closePopup() {
+        popupContainer.classList.remove('visible');
+        document.body.style.overflow = ''; // Återställ scrollning
+      }
+
+      closePopupButton.addEventListener('click', closePopup);
+
+      // Stäng när man klickar utanför popup:en
+      popupContainer.addEventListener('click', (event) => {
+        if (event.target === popupContainer) {
+          closePopup();
+        }
+      });
+
+      // Stäng med Escape-tangenten
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && popupContainer.classList.contains('visible')) {
+          closePopup();
+        }
+      });
+
+      // Google login
+      if (googleLoginButton && supabaseClient) {
+        googleLoginButton.addEventListener('click', async (e) => {
+          e.preventDefault();
+          try {
+            const { data, error } = await supabaseClient.auth.signInWithOAuth({
+              provider: 'google',
+              options: {
+                redirectTo: `${window.location.origin}/auth/callback`
+              }
+            });
+            
+            if (error) {
+              console.error('Fel vid Google-inloggning:', error);
+              alert('Något gick fel vid inloggning med Google. Försök igen.');
+            }
+          } catch (error) {
+            console.error('Oväntat fel vid Google-inloggning:', error);
+          }
+        });
+      }
+
+      // Facebook login
+      if (facebookLoginButton && supabaseClient) {
+        facebookLoginButton.addEventListener('click', async (e) => {
+          e.preventDefault();
+          try {
+            const { data, error } = await supabaseClient.auth.signInWithOAuth({
+              provider: 'facebook',
+              options: {
+                redirectTo: `${window.location.origin}/auth/callback`
+              }
+            });
+            
+            if (error) {
+              console.error('Fel vid Facebook-inloggning:', error);
+              alert('Något gick fel vid inloggning med Facebook. Försök igen.');
+            }
+          } catch (error) {
+            console.error('Oväntat fel vid Facebook-inloggning:', error);
+          }
+        });
+      }
+    });
+  }
+</script>

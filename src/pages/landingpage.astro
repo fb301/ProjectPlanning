@@ -1,6 +1,5 @@
 ---
-// Import av andra komponenter eller data
-// Här kan du importerar ikoner från heroicons eller ett annat bibliotek
+import Header from '../components/Header.astro';
 ---
 
 <!doctype html>
@@ -11,6 +10,28 @@
     <title>Taskform</title>
   </head>
   <body>
+     <footer class="company-footer">
+    <div class="footer-container">
+      <h4 class="footer-heading">Used and trusted by multiple companiess</h4>
+      <div class="logos-grid">
+        <img src="/logos/logo1.png" alt="Fiktiv logo 1" class="company-logo" />
+        <img src="/logos/logo2.png" alt="Fiktiv logo 2" class="company-logo" />
+        <img src="/logos/logo3.png" alt="Fiktiv logo 3" class="company-logo" />
+        <img src="/logos/logo4.png" alt="Fiktiv logo 4" class="company-logo" />
+        <img src="/logos/logo5.png" alt="Fiktiv logo 4" class="company-logo" />
+        
+
+       <button class="login-button">
+  <svg class="login-icon" viewBox="0 0 20 20" fill="currentColor">
+    <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-2 0V4H5v12h10v-2a1 1 0 112 0v3a1 1 0 01-1 1H4a1 1 0 01-1-1V3z" clip-rule="evenodd" />
+    <path fill-rule="evenodd" d="M6 10a1 1 0 011-1h6l-2-2a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4A1 1 0 0111 14l2-2H7a1 1 0 01-1-1z" clip-rule="evenodd" />
+  </svg>
+  Already a doer? 
+</button>
+        
+      </div>
+    </div>
+  </footer>
     <div class="particles">
       <div class="particle"></div>
       <div class="particle"></div>
@@ -30,46 +51,24 @@
               <div class="progress-fill" id="progressFill"></div>
             </div>
             <div class="step-indicator">
-              <span class="step active" id="step1">Medlem Info</span>
-              <span class="step" id="step2">Sprint Detaljer</span>
-              <span class="step" id="step3">Bekräfta</span>
+              <span class="step active" id="step1">Register now</span>
+              <span class="step" id="step2">Project details</span>
+              <span class="step" id="step3">Confirm</span>
             </div>
           </div>
           <form id="multiForm">
             <div class="form-step active" data-step="1">
               <h2 class="form-title">
-                <svg
-                  class="icon-title"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 9v3.75m-9.303-3.375c-.864 1.13-1.42 2.454-1.652 3.864m18.704-3.864c.232-1.41.788-2.734 1.652-3.864M12 9a9 9 0 0 1 8.243 4.243M12 9a9 0 0 0-8.243 4.243m-6.49 2.502a15.018 15.018 0 0 1 10.233 4.887 15.018 15.018 0 0 0-10.233-4.887ZM21.944 11.5a23.111 23.111 0 0 0-2.31 3.513c-2.484 4.095-6.31 6.844-10.373 6.945-2.039.052-4.072-.345-5.918-1.168A24.873 24.873 0 0 1 1.707 14.5c.232-1.41.788-2.734 1.652-3.864m18.704-3.864c.232-1.41.788-2.734 1.652-3.864"
-                  />
-                </svg>
-                Don't be dumb, have a scrum!
+              Join the world of doers
               </h2>
+              
               <p class="form-subtitle">
-                Registrera dig för vårt scrum meeting. Vi behöver bara
-                grundläggande information för att komma igång.
+                Register for more efficiency within your team. We just need some basic information to get you started.
+                
               </p>
+              
               <div class="form-group">
-                <label class="form-label">Namn *</label>
-                <input
-                  type="text"
-                  class="form-input"
-                  name="fullName"
-                  placeholder="Ditt fullständiga namn"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label class="form-label">E-post *</label>
+                <label class="form-label">E-mail*</label>
                 <input
                   type="email"
                   class="form-input"
@@ -78,29 +77,55 @@
                   required
                 />
               </div>
+             <div class="form-group">
+  <label class="form-label">Password *</label>
+  <input
+    type="password"
+    class="form-input"
+    name="password"
+    id="password"
+    placeholder="Create a secure password"
+    required
+    minlength="8"
+    autocomplete="new-password"
+  />
+</div>
               <div class="form-group">
-                <label class="form-label">Roll i teamet</label>
+  <label class="form-label">Confirm Password *</label>
+  <input
+    type="password"
+    class="form-input"
+    name="confirmPassword"
+    id="confirmPassword"
+    placeholder="Confirm your password"
+    required
+    minlength="8"
+    autocomplete="new-password"
+  />
+</div>
+              <div class="form-group">
+                <label class="form-label">What is your role within the team?</label>
                 <select class="form-select" name="role">
-                  <option value="">Välj din roll</option>
-                  <option value="product-owner">Product Owner</option>
+                  <option value="">Choose your role</option>
+                  <option value="product-owner">Project Manager</option>
                   <option value="scrum-master">Scrum Master</option>
                   <option value="developer">Developer</option>
                   <option value="designer">Designer</option>
                   <option value="tester">Tester/QA</option>
                   <option value="stakeholder">Stakeholder</option>
                   <option value="student">Student</option>
-                  <option value="other">Annat</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
             </div>
             <div class="form-step" data-step="2">
-              <h2 class="form-title">Sprint Information</h2>
+              <h2 class="form-title">Project Information</h2>
               <p class="form-subtitle">
                 Berätta om dina behov och tillgänglighet för kommande sprint.
               </p>
               <div class="form-group">
                 <label class="form-label"
-                  >Vilket typ av scrum meeting? *</label
+                  >What type of project? *</label
                 >
                 <div class="radio-group">
                   <div class="radio-item">
@@ -111,7 +136,7 @@
                       value="daily"
                       required
                     />
-                    <label for="daily">Daily Standup</label>
+                    <label for="daily">Agile</label>
                   </div>
                   <div class="radio-item">
                     <input
@@ -251,7 +276,7 @@
                     />
                   </svg>
                 </div>
-                <h2 class="success-title">Välkommen till teamet!</h2>
+                <h2 class="success-title">Welcome to the club of doers</h2>
                 <p class="success-text">
                   Du är nu registrerad för scrum meetinget. Du kommer få en
                   kalenderinbjudan och mer information via e-post inom kort.
@@ -277,13 +302,14 @@
           </form>
         </div>
         <div class="why-choose-us-heading">
-          <h3 class="section-title">Varför använda vår tjänst?</h3>
-          <p>
-            Den är bara helt förträfflig helt enkelt - Ingvar Kamprad, IKEA
+          <h3 class="section-title">Why use our service?</h3>
+           <p class="main-text">
+            In a world drowning in digital noise and disorganized chaos, a new dawn of productivity has arrived. The team behind Weee.. has done it again and developed a Project Manager Tool that isn't just a software; it's a revolution, it´s the future. It´s Weee...DidIT It's the silent hero working behind the scenes, transforming your chaotic to-do lists into a perfectly orchestrated symphony of success.
           </p>
-          <p>
-            Den är bara helt förträfflig helt enkelt - Ingvar Kamprad, IKEA
-          </p>
+          <div class="form-logo-container">
+  <img src="/logo.png" alt="Företagslogotyp" class="form-logo" />
+ <p class="main-text"> Nike say´s Just Do It. We on Weee always say WeDidIT </p>
+</div>
         </div>
       </div>
       <div class="why-choose-us">
@@ -304,10 +330,9 @@
                 />
               </svg>
             </div>
-            <h4 class="feature-title">Snabbare Leverans</h4>
+            <h4 class="feature-title">Flawless Execution</h4>
             <p class="feature-description">
-              Iterativ utveckling ger snabbare resultat och kontinuerlig feedback
-              från stakeholders.
+              Unleash the power of agile. Our iterative process ensures your projects don't just progress—they leap forward, delivering tangible results and continuous, crystal-clear feedback from stakeholders at lightning speed.
             </p>
           </div>
           <div class="feature-card">
@@ -331,10 +356,9 @@
                 />
               </svg>
             </div>
-            <h4 class="feature-title">Bättre Fokus</h4>
+            <h4 class="feature-title">Faster Delivery</h4>
             <p class="feature-description">
-              Daily standups och sprint goals håller teamet fokuserat på rätt
-              prioriteringar.
+              Say goodbye to distractions. Our dynamic daily standups and sprint goals act as your team's North Star, meticulously aligning every effort to your most critical priorities and keeping everyone perfectly in sync.
             </p>
           </div>
           <div class="feature-card">
@@ -353,15 +377,18 @@
                 />
               </svg>
             </div>
-            <h4 class="feature-title">Kontinuerlig Förbättring</h4>
+            <h4 class="feature-title">FutureProof</h4>
             <p class="feature-description">
-              Retrospektiv hjälper teamet att lära sig och förbättras med varje
-              sprint.
+              The journey to perfection is a marathon, not a sprint. With every retrospective, our tool transforms your team's insights into actionable improvements, creating a powerful feedback loop that guarantees continuous, measurable progress with every cycle.
+
+
             </p>
           </div>
         </div>
       </div>
     </div>
+
+   
 
     <style>
       /* Din CSS-kod här */
@@ -378,6 +405,90 @@
         position: relative;
         overflow-x: hidden;
       }
+
+      .footer-heading {
+        font-size: 1.5rem; /* En bra storlek för rubriken */
+        font-weight: 600; /* Gör texten lite fetare */
+        color: #e93d82; /* En mörkare färg, men inte helt svart */
+        text-align: center; /* Centrerar texten i behållaren */
+        margin-bottom: 2rem; /* Skapar lite utrymme under rubriken */
+        font-family: 'Poppins', sans-serif; /* Exempel på ett snyggt typsnitt */
+        line-height: 1.4; /* Förbättrar läsbarheten */
+      }
+
+      .company-logo {
+        height: 150px; /* Begränsar logotypens höjd */
+        filter: grayscale(100%); /* Gör logotyperna gråskala */
+        opacity: 0.6; /* Gör dem lite genomskinliga */
+        transition: all 0.3s ease;
+      }
+
+      /* Förstärkt CSS för login-knappen */
+.logos-grid .login-button {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  
+  padding: 0.8rem 1.8rem;
+  background: linear-gradient(135deg, #DBFCE7 0%, #DBFCE7 100%);
+  color: black;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  min-width: 130px;
+  height: 50px;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  float: none !important;
+}
+
+.logos-grid .login-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #3E1C2E 0%, #3E1C2E100%);
+}
+
+.logos-grid .login-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+}
+
+.login-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Se till att logos-grid fungerar korrekt */
+.logos-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important;
+  
+  align-items: center !important;
+  justify-items: center !important;
+}
+
+/* Responsiv design för knappen */
+@media (max-width: 768px) {
+  .login-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+    min-width: 110px;
+    height: 45px;
+  }
+  
+  .login-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
 
       /* Animated background particles */
       .particles {
@@ -493,6 +604,17 @@
         color: white;
       }
 
+      .form-logo-container {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-logo {
+  height: auto; /* Behåller bildens proportioner */
+  max-height: 300px; /* Begränsar logotypens maxhöjd till 50px */
+}
+
       /* Glass card */
       .glass-card {
         flex: 1; /* Låter elementet växa för att fylla utrymme */
@@ -526,7 +648,7 @@
         height: 2.5rem;
         width: 2.5rem;
         margin-right: 0.75rem;
-        color: #22c55e;
+        color: #3E1C2E;
         vertical-align: middle;
         stroke-width: 1.5px;
       }
@@ -791,6 +913,16 @@
         line-height: 1.6;
       }
 
+      input:invalid {
+  border-color: #ef4444;
+}
+
+.password-match-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
       /* Why Choose Us Section */
       .why-choose-us {
         margin-top: 0;
@@ -865,7 +997,7 @@
       .feature-icon svg {
         height: 3rem;
         width: 3rem;
-        color: #4ade80;
+        color: #e93d82;
         stroke-width: 1.5px;
       }
 
@@ -880,6 +1012,13 @@
         color: rgba(255, 255, 255, 0.8);
         line-height: 1.6;
         font-size: 0.95rem;
+      }
+
+      .main-text {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        font-size: 1.1rem;
+         margin-bottom: 1.5rem;
       }
 
       /* Responsive design */
@@ -911,6 +1050,15 @@
           text-align: center;
         }
       }
+
+        /* Din CSS för footern */
+    .company-footer {
+      width: 100%;
+      padding: 4rem 2rem;
+      
+      text-align: center;
+    }
+    /* Resten av din footer-CSS... */
 
       @media (max-width: 768px) {
         .glass-card {
@@ -1168,6 +1316,51 @@
           });
         }
       });
+
+      function validatePasswords() {
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  
+  if (password !== confirmPassword) {
+    document.getElementById('confirmPassword').setCustomValidity('Passwords do not match');
+  } else {
+    document.getElementById('confirmPassword').setCustomValidity('');
+  }
+}
+
+// Lägg till event listeners
+document.getElementById('password').addEventListener('input', validatePasswords);
+document.getElementById('confirmPassword').addEventListener('input', validatePasswords);
+</script>
+
+<!-- SVENSKA VERSION: -->
+<div class="form-group">
+  <label class="form-label">Lösenord *</label>
+  <input
+    type="password"
+    class="form-input"
+    name="password"
+    id="password"
+    placeholder="Skapa ett säkert lösenord"
+    required
+    minlength="8"
+    autocomplete="new-password"
+  />
+</div>
+
+<div class="form-group">
+  <label class="form-label">Bekräfta lösenord *</label>
+  <input
+    type="password"
+    class="form-input"
+    name="confirmPassword"
+    id="confirmPassword"
+    placeholder="Bekräfta ditt lösenord"
+    required
+    minlength="8"
+    autocomplete="new-password"
+  />
+</div>
     </script>
   </body>
 </html>

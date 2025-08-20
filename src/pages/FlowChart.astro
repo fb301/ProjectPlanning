@@ -1,0 +1,25 @@
+---
+// Importera din Markdown-fil. Sökvägen är relativ till denna nya sida.
+// Eftersom din nya sida ligger i 'src/pages', går vi upp en mapp (..)
+// och sedan in i 'content/docs'.
+import { Content } from '../content/docs/flowchart.md';
+---
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flödesschema</title>
+</head>
+<body>
+    <header>
+        <h1>Vårt Flödesschema</h1>
+    </header>
+
+    <main>
+        <Content />
+    </main>
+
+</body>
+</html>

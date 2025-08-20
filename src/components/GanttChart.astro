@@ -1,0 +1,410 @@
+---
+import '../styles/gantt.css';
+
+
+// Eventuella andra imports, t.ex. din Sidebar-komponent
+---
+
+<div class="header">
+    <h1>WeeeDidIt projekt med Astro</p></h1>
+    <p>Gantt-schema för group Green • Start: 1 augusti 2025 • Presentation: 22 augusti 2025</p>
+</div>
+
+<div class="legend">
+    <div class="legend-item">
+        <div class="legend-color bar-planning"></div>
+        <span>Planering & Krav</span>
+    </div>
+    <div class="legend-item">
+        <div class="legend-color bar-design"></div>
+        <span>Design & Arkitektur (UML)</span>
+    </div>
+    <div class="legend-item">
+        <div class="legend-color bar-development"></div>
+        <span>Utveckling</span>
+    </div>
+    <div class="legend-item">
+        <div class="legend-color bar-testing"></div>
+        <span>Testning & Buggfixar</span>
+    </div>
+    <div class="legend-item">
+        <div class="legend-color bar-deployment"></div>
+        <span>Driftsättning & Presentation</span>
+    </div>
+</div>
+
+<div class="gantt-container">
+    <table class="gantt-table">
+        <thead>
+            <tr>
+                <th class="activity-cell">Aktivitet/Fas</th>
+                <th class="day-header">1/8<br>Fre</th>
+                <th class="day-header">2/8<br>Lör</th>
+                <th class="day-header">3/8<br>Sön</th>
+                <th class="day-header">4/8<br>Mån</th>
+                <th class="day-header">5/8<br>Tis</th>
+                <th class="day-header">6/8<br>Ons</th>
+                <th class="day-header">7/8<br>Tor</th>
+                <th class="day-header">8/8<br>Fre</th>
+                <th class="day-header">9/8<br>Lör</th>
+                <th class="day-header">10/8<br>Sön</th>
+                <th class="day-header">11/8<br>Mån</th>
+                <th class="day-header">12/8<br>Tis</th>
+                <th class="day-header">13/8<br>Ons</th>
+                <th class="day-header">14/8<br>Tor</th>
+                <th class="day-header">15/8<br>Fre</th>
+                <th class="day-header">16/8<br>Lör</th>
+                <th class="day-header">17/8<br>Sön</th>
+                <th class="day-header">18/8<br>Mån</th>
+                <th class="day-header">19/8<br>Tis</th>
+                <th class="day-header">20/8<br>Ons</th>
+                <th class="day-header">21/8<br>Tor</th>
+                <th class="day-header">22/8<br>Fre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="activity-cell phase-planning">Brainstorming</td>
+                <td><div class="activity-bar bar-planning">Start</div></td>
+                <td><div class="activity-bar bar-planning">Test</div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning">Slut</div></td>
+            </tr>
+            <tr>
+                <td class="activity-cell phase-planning">Projektinitiering & Kravinsamling</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="activity-bar bar-planning">Start</div></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="activity-cell phase-planning">Teknisk specifikation & Miljöuppsättning</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="activity-bar bar-planning"></div></td>
+                <td><div class="activity-bar bar-planning">Slut</div></td>
+            </tr>
+            <tr>
+                <td class="activity-cell phase-design">UX/UI Design & Wireframing</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="activity-bar bar-design">UX/UI</div></td>
+            </tr>
+            <tr>
+                <td class="activity-cell phase-design">UML-diagram (Klass, Sekvens, Användningsfall)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="activity-bar bar-design">UML</div></td>
+            </tr>
+            <tr>
+                <td class="activity-cell phase-development">Backend-utveckling (API:er, Databas)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="activity-bar bar-development">Backend</div></td>
+            </tr>
+            <tr>
+                <td class="activity-cell phase-development">Frontend-utveckling (React Native-komponenter)</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="activity-bar bar-development">Frontend</div></td>
+            </tr>
+            <tr>
+                <td class="activity-cell phase-testing">Enhetstester & Integrationstester</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="activity-bar bar-testing">Tester</div></td>
+            </tr>
+            <tr>
+                <td class="activity-cell phase-testing">Användartestning (UAT) & Buggfixar</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="activity-bar bar-testing">UAT</div></td>
+            </tr>
+            <tr>
+                <td class="activity-cell phase-deployment">Förberedelse för presentation</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><div class="activity-bar bar-deployment">Förbered</div></td>
+            </tr>
+            <tr>
+                <td class="activity-cell phase-deployment">Projektpresentation</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="milestone-cell"><div class="activity-bar bar-milestone milestone-indicator">Deadline</div></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="key-info">
+    <div class="info-card">
+        <h3>📅 Viktiga datum</h3>
+        <ul>
+            <li><strong>Projektstart:</strong> 1 augusti 2025 (Fredag)</li>
+            <li><strong>Projektpresentation:</strong> 22 augusti 2025 (Fredag) kl 10:00</li>
+        </ul>
+    </div>
+    
+    <div class="info-card">
+        <h3>🎯 Milstolpar</h3>
+        <ul>
+            <li><strong>8/8:</strong> Beslut av projekt taget</li>
+            <li><strong>8/8:</strong> Designfas påbörjad (UX/UI & UML)</li>
+            <li><strong>11/8:</strong> Backend-utveckling påbörjad</li>
+            <li><strong>14/8:</strong> Frontend-utveckling påbörjad</li>
+            <li><strong>19/8:</strong> Testning & Buggfixar klara</li>
+            <li><strong>22/8:</strong> Presentation av projekt</li>
+        </ul>
+    </div>
+    
+    <div class="info-card">
+        <h3>👥 Team & Roller</h3>
+        <ul>
+            <li><strong>Git & Astro master:</strong> Fredrik Björklund</li>
+            <li><strong>Fullstack developer 1:</strong> Danny Gomez </li>
+            <li><strong>Fullstack developer 2:</strong> Khattab Alshami?</li>
+            <li><strong>Fullstack developer 3</strong> Fredrik Björklund</li>
+             <li><strong>Fullstack developer 4</strong> Tomas Mauritzson</li>
+            <li><strong>Projektledare:</strong> Tomas Mauritzson</li>
+        </ul>
+    </div>
+    
+    <div class="info-card">
+        <h3>🔧 Resurser & Verktyg</h3>
+        <ul>
+            <li><strong>Projektledning:</strong> HTML</li>
+            <li><strong>UML-verktyg:</strong> Miro</li>
+            <li><strong>Kodrepository:</strong> Git/GitHub</li>
+            <li><strong>Kommunikation:</strong> Teams</li>
+            <li><strong>Databas:</strong> Supabase</li>
+            <li><strong>Kodspråk:</strong></li>
+            <ul>
+                <li>Frontend: HTML, CSS, Javascript</li>
+                <li>Backend: Typescript</li>
+            </ul>
+            <li><strong>Paket:</strong> Tailwind, Mermaid</li>
+        </ul>
+    </div>
+    <div class="info-card">
+        <h3>🔧 Resurser & Verktyg</h3>
+        <ul>
+            <li><strong>Projektledning:</strong> HTML</li>
+            <li><strong>UML-verktyg:</strong> Miro</li>
+            <li><strong>Kodrepository:</strong> Git/GitHub</li>
+            <li><strong>Kommunikation:</strong> Teams</li>
+            <li><strong>Databas:</strong> Supabase</li>
+            <li><strong>Kodspråk:</strong></li>
+            <ul>
+                <li>Frontend: HTML, CSS, Javascript</li>
+                <li>Backend: Typescript</li>
+            </ul>
+            <li><strong>Paket:</strong> Tailwind, Mermaid</li>
+        </ul>
+    </div>
+</div>

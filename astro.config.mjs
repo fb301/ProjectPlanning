@@ -1,24 +1,19 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
 import react from '@astrojs/react';
-
 import tailwindcss from '@tailwindcss/vite';
-
 import vue from '@astrojs/vue';
-
 import netlify from '@astrojs/netlify';
-
-import rehypeMermaid from 'rehype-mermaidjs';
+import remarkMermaid from "remark-mermaidjs";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), vue()],
-
+  
   markdown: {
-    rehypePlugins: [rehypeMermaid],
+    remarkPlugins: [remarkMermaid],
   },
-
+  
   vite: {
     plugins: [tailwindcss()]
   },

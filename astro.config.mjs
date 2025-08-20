@@ -9,9 +9,15 @@ import vue from '@astrojs/vue';
 
 import netlify from '@astrojs/netlify';
 
+import rehypeMermaid from 'rehype-mermaidjs';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), vue()],
+
+  markdown: {
+    rehypePlugins: [rehypeMermaid],
+  },
 
   vite: {
     plugins: [tailwindcss()]

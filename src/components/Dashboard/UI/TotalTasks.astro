@@ -1,0 +1,36 @@
+---
+import { supabase } from "../../../utils/supabase";
+
+const { count, error } = await supabase
+  .from("todotasks")
+  .select("*", { count: "exact" });
+
+if (error) {
+  console.error(error);
+}
+---
+
+<div
+  class="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm"
+>
+  <div class="flex items-center justify-between">
+    <div>
+      <p class="text-sm text-[var(--gray-11)] mb-1">Total Tasks</p>
+      <p class="text-2xl font-semibold text-[var(--gray-12)]">{count}</p>
+    </div>
+    <div
+      class="w-12 h-12 bg-[var(--accent-a3)] rounded-[var(--radius-2)] flex items-center justify-center"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        class="text-[var(--accent-11)]"
+      >
+        <path d="M3 3h18v18H3zM9 9h6v6H9z"></path>
+      </svg>
+    </div>
+  </div>
+</div>

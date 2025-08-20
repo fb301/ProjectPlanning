@@ -1,28 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormInput from "./FormInput.jsx";
 import { supabase } from "../../utils/supabase";
 
 export default function TodoForm({
+  id = "", // ← Nytt prop
   title = "",
   description = "",
   status = "todo",
   assignedTo = "",
   dueDate = "",
   priority = "medium",
+  onClose, // New prop for callback when form closes
 }) {
   const initialFormState = {
+    id: id,
     title: title,
     description: description,
     status: status,
-    assignedTo: assignedTo, // tom sträng om inte tilldelad
-    dueDate: dueDate, // YYYY-MM-DD från <input type="date" />
-    priority: priority, // 'low' | 'medium' | 'high'
+    assignedTo: assignedTo,
+    dueDate: dueDate,
+    priority: priority,
   };
 
   const [task, setTask] = useState(initialFormState);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+
+  useEffect(() => {
+    if (id !== "") {
+      const fetchTask = async () => {
+        const { data, error } = await supabase
+          .from("todotasks")
+          .select("*")
+          .eq("id", id)
+          .single();
+
+        if (!error && data) {
+          setTask({
+            id: data.id,
+            title: data.title,
+            description: data.description ?? "",
+            status: data.status,
+            priority: data.priority,
+            assignedTo: data.assigned_to ?? "",
+            dueDate: data.due_date ?? "",
+          });
+        }
+      };
+      fetchTask();
+    }
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,47 +65,64 @@ export default function TodoForm({
     const payload = {
       title: task.title.trim(),
       description: task.description.trim() || null,
-      status: task.status, // 'todo' | 'progress' | 'done'
-      priority: task.priority, // 'low' | 'medium' | 'high'
+      status: task.status,
+      priority: task.priority,
       assigned_to: task.assignedTo || null,
-      due_date: task.dueDate || null, // YYYY-MM-DD funkar direkt mot DATE-kolumn
+      due_date: task.dueDate || null,
     };
 
     try {
-      const { error } = await supabase.from("todotasks").insert([payload]); // array är mest framtidssäkert
+      let response;
+      if (id !== "") {
+        // Uppdatera befintlig uppgift
+        response = await supabase
+          .from("todotasks")
+          .update(payload)
+          .eq("id", id);
+      } else {
+        // Skapa ny uppgift
+        response = await supabase.from("todotasks").insert([payload]);
+      }
 
-      if (error) throw error;
+      if (response.error) throw response.error;
 
       setIsSubmitted(true);
-      setTask(initialFormState);
+      // setTask(initialFormState);
       setTimeout(() => setIsSubmitted(false), 3000);
+
+      // Call onClose with refresh flag after successful submission
+      if (onClose) {
+        setTimeout(() => onClose(true), 1500); // Close modal and refresh after 1.5s
+      }
     } catch (err) {
-      setErrorMsg(err.message ?? "Något gick fel vid skapandet av uppgiften.");
+      setErrorMsg(err.message ?? "Something dysfunctioned.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm font-sans text-white">
+    <div className="bg-[var(--gray-2)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm font-sans text-white">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-[var(--gray-12)] mb-2">
-          Create a New Task
+          {id === "" ? "Create a New Task" : "Update Task '" + task.title + "'"}
         </h1>
         <p className="text-[var(--gray-11)]">
-          Fill out the details below to add a new task to do.
+          {id === ""
+            ? "Fill out the details below to add a new task to do."
+            : "Edit the details below to update the task."}
         </p>
       </div>
 
       {isSubmitted && (
-        <div
-          className="bg-green-500/20 border border-green-500 text-green-300 px-4 py-3 rounded-lg relative mb-6 text-center"
-          role="alert"
-        >
-          <span className="block sm:inline">Task created successfully!</span>
+        <div className="...">
+          <span className="block sm:inline">
+            {id !== ""
+              ? "Task updated successfully!"
+              : "Task created successfully!"}
+          </span>
         </div>
       )}
-
       {errorMsg && (
         <div
           className="bg-red-500/10 border border-red-500 text-red-300 px-4 py-3 rounded-lg relative mb-6 text-center"
@@ -133,7 +178,6 @@ export default function TodoForm({
             <option value="high">High</option>
           </FormInput>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormInput
             id="assignedTo"
@@ -168,7 +212,7 @@ export default function TodoForm({
           disabled={loading}
           className="w-full bg-[var(--accent-6)] rounded-[var(--radius-2)] hover:bg-[var(--accent-9)] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3 px-4 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out transform hover:scale-105"
         >
-          {loading ? "Creating..." : "Create Task"}
+          {loading ? "Saving..." : id !== "" ? "Uppdate Task" : "Create Task"}
         </button>
       </form>
     </div>

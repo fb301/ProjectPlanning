@@ -1,0 +1,37 @@
+---
+import ActiveTasks from "./UI/ActiveTasks.astro";
+import CompletedTasks from "./UI/CompletedTasks.astro";
+import TeamMembers from "./UI/TeamMembers.astro";
+import TotalTasks from "./UI/TotalTasks.astro";
+import UpcomingTasks from "./UI/UpcomingTasks.astro";
+import ActivityFeed from "./UI/ActivityFeed.astro";
+import UpcomingTasksList from "./UI/UpcomingTasksList.jsx";
+---
+
+<!-- Dashboard Content -->
+<div class="ml-0 md:ml-16 p-6">
+  <!-- Header -->
+  <header class="mb-8">
+    <h1 class="text-3xl font-bold text-[var(--gray-12)] mb-2">Dashboard</h1>
+    <p class="text-[var(--gray-11)]">
+      Welcome back! Here's what's happening with your projects.
+    </p>
+  </header>
+
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <ActiveTasks />
+    <CompletedTasks />
+    <TotalTasks />
+    <TeamMembers />
+  </div>
+
+  <!-- Main Content Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Recent Projects -->
+    <UpcomingTasksList client:load />
+
+    <!-- Activity Feed -->
+    <ActivityFeed />
+  </div>
+</div>

@@ -99,12 +99,12 @@ export default function TodoForm({
     <div className="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm font-sans text-white">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-[var(--gray-12)] mb-2">
-          {id === ""
-            ? "Create a New Task"
-            : "Update Task '" + task.title + "'"}
+          {id === "" ? "Create a New Task" : "Update Task '" + task.title + "'"}
         </h1>
         <p className="text-[var(--gray-11)]">
-          Fill out the details below to add a new task to do.
+          {id === ""
+            ? "Fill out the details below to add a new task to do."
+            : "Edit the details below to update the task."}
         </p>
       </div>
 

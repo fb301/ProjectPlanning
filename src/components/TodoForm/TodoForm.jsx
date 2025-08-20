@@ -96,7 +96,7 @@ export default function TodoForm({
   };
 
   return (
-    <div className="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm font-sans text-white">
+    <div className="bg-[var(--gray-2)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm font-sans text-white">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-[var(--gray-12)] mb-2">
           {id === "" ? "Create a New Task" : "Update Task '" + task.title + "'"}

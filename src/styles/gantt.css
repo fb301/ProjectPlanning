@@ -1,17 +1,19 @@
+/* Grundläggande stilar */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 20px;
-    background-color: #f5f7fa;
+    background-color: var(--gray-1);
+    color: var(--gray-12);
 }
 
 .header {
     text-align: center;
     margin-bottom: 30px;
     padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background-color: var(--accent-9);
+    color: var(--gray-1);
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-2);
 }
 
 .header h1 {
@@ -25,11 +27,18 @@ body {
     opacity: 0.9;
 }
 
+/* Page Container - den yttre behållaren för din sida */
+.page-container {
+    margin-left: 80px;
+    color: var(--gray-12);
+}
+
+/* Gantt-diagrammet och dess behållare */
 .gantt-container {
     overflow-x: auto;
-    background: white;
+    background: var(--gray-2);
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-4);
     padding: 20px;
     margin-bottom: 30px;
 }
@@ -42,15 +51,15 @@ body {
 
 .gantt-table th,
 .gantt-table td {
-    border: 1px solid #e1e8ed;
+    border: 1px solid var(--gray-4);
     padding: 8px;
     text-align: center;
     font-size: 0.9em;
 }
 
 .gantt-table th {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: white;
+    background-color: var(--accent-6);
+    color: var(--accent-12);
     font-weight: 600;
     position: sticky;
     top: 0;
@@ -60,7 +69,7 @@ body {
 .activity-cell {
     text-align: left;
     font-weight: 500;
-    background-color: #f8f9fa;
+    background-color: var(--gray-3);
     min-width: 200px;
     position: sticky;
     left: 0;
@@ -73,42 +82,46 @@ body {
     min-width: 40px;
 }
 
-.phase-planning { background-color: #fff3e0; }
-.phase-design { background-color: #e3f2fd; }
-.phase-development { background-color: #e8f5e8; }
-.phase-testing { background-color: #f3e5f5; }
-.phase-deployment { background-color: #fce4ec; }
-.milestone-cell { background-color: #ffebee; }
+/* Fas-specifika bakgrundsfärger */
+.phase-planning { background-color: var(--orange-3); }
+.phase-design { background-color: var(--blue-3); }
+.phase-development { background-color: var(--green-3); }
+.phase-testing { background-color: var(--purple-3); }
+.phase-deployment { background-color: var(--pink-3); }
+.milestone-cell { background-color: var(--crimson-3); }
 
+/* Aktivitetesfält */
 .activity-bar {
     height: 20px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--gray-1);
     font-weight: 500;
     font-size: 0.8em;
     margin: 2px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-2);
 }
 
-.bar-planning { background: linear-gradient(135deg, #ffa726, #ff9800); }
-.bar-design { background: linear-gradient(135deg, #42a5f5, #1e88e5); }
-.bar-development { background: linear-gradient(135deg, #66bb6a, #43a047); }
-.bar-testing { background: linear-gradient(135deg, #ab47bc, #8e24aa); }
-.bar-deployment { background: linear-gradient(135deg, #ec407a, #e91e63); }
-.bar-milestone { background: linear-gradient(135deg, #ef5350, #e53935); }
+/* Färger för aktivitetsfälten */
+.bar-planning { background-color: var(--orange-9); }
+.bar-design { background-color: var(--blue-9); }
+.bar-development { background-color: var(--green-9); }
+.bar-testing { background-color: var(--purple-9); }
+.bar-deployment { background-color: var(--pink-9); }
+.bar-milestone { background-color: var(--crimson-9); }
 
+/* Förklaring (Legend) */
 .legend {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     margin-bottom: 20px;
     padding: 20px;
-    background: white;
+    background: var(--gray-2);
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-2);
 }
 
 .legend-item {
@@ -121,7 +134,7 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-2);
 }
 
 .milestone-indicator::after {
@@ -133,6 +146,7 @@ body {
     font-size: 1.2em;
 }
 
+/* Informationskort */
 .key-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -141,16 +155,16 @@ body {
 }
 
 .info-card {
-    background: white;
+    background: var(--gray-2);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-2);
 }
 
 .info-card h3 {
     margin: 0 0 15px 0;
-    color: #333;
-    border-bottom: 2px solid #667eea;
+    color: var(--gray-12);
+    border-bottom: 2px solid var(--accent-9);
     padding-bottom: 8px;
 }
 
@@ -162,8 +176,10 @@ body {
 .info-card li {
     margin-bottom: 8px;
     line-height: 1.4;
+    color: var(--gray-11);
 }
 
+/* Media Query för responsiv design */
 @media (max-width: 768px) {
     .header h1 { font-size: 1.8em; }
     .legend { flex-direction: column; gap: 10px; }

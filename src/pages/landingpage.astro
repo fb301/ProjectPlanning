@@ -1,4 +1,5 @@
 ---
+import LoginComponent from '../components/LoginComponent.astro';
 import Header from '../components/Header.astro';
 ---
 
@@ -21,13 +22,7 @@ import Header from '../components/Header.astro';
         <img src="/logos/logo5.png" alt="Fiktiv logo 4" class="company-logo" />
         
 
-       <button class="login-button">
-  <svg class="login-icon" viewBox="0 0 20 20" fill="currentColor">
-    <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-2 0V4H5v12h10v-2a1 1 0 112 0v3a1 1 0 01-1 1H4a1 1 0 01-1-1V3z" clip-rule="evenodd" />
-    <path fill-rule="evenodd" d="M6 10a1 1 0 011-1h6l-2-2a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4A1 1 0 0111 14l2-2H7a1 1 0 01-1-1z" clip-rule="evenodd" />
-  </svg>
-  Already a doer? 
-</button>
+         <LoginComponent />
         
       </div>
     </div>
@@ -1340,34 +1335,7 @@ document.getElementById('password').addEventListener('input', validatePasswords)
 document.getElementById('confirmPassword').addEventListener('input', validatePasswords);
 </script>
 
-<!-- SVENSKA VERSION: -->
-<div class="form-group">
-  <label class="form-label">Lösenord *</label>
-  <input
-    type="password"
-    class="form-input"
-    name="password"
-    id="password"
-    placeholder="Skapa ett säkert lösenord"
-    required
-    minlength="8"
-    autocomplete="new-password"
-  />
-</div>
 
-<div class="form-group">
-  <label class="form-label">Bekräfta lösenord *</label>
-  <input
-    type="password"
-    class="form-input"
-    name="confirmPassword"
-    id="confirmPassword"
-    placeholder="Bekräfta ditt lösenord"
-    required
-    minlength="8"
-    autocomplete="new-password"
-  />
-</div>
     </script>
   </body>
 </html>

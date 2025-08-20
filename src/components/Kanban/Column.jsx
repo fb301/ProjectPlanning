@@ -43,7 +43,7 @@ const getColumnStyle = (columnId) => {
   }
 };
 
-export default function Column({ columnId, columnName, tasks }) {
+export default function Column({ columnId, columnName, tasks, onTaskUpdate }) {
   const { setNodeRef: setDroppableRef } = useDroppable({ id: columnId });
   const [editTaskId, setEditTaskId] = useState(null);
 
@@ -51,6 +51,14 @@ export default function Column({ columnId, columnName, tasks }) {
 
   const handleEdit = (id) => setEditTaskId(id);
   const closeModal = () => setEditTaskId(null);
+
+  // Handle form close with optional refresh
+  const handleFormClose = (shouldRefresh = false) => {
+    closeModal();
+    if (shouldRefresh && onTaskUpdate) {
+      onTaskUpdate();
+    }
+  };
 
   return (
     <div>
@@ -115,7 +123,7 @@ export default function Column({ columnId, columnName, tasks }) {
                          max-h-[90vh] overflow-auto relative"
           >
             <button
-              onClick={closeModal}
+              onClick={() => handleFormClose(false)}
               className="absolute top-3 right-3 w-8 h-8 rounded-[var(--radius-2)]
                        flex items-center justify-center
                        text-[var(--gray-11)] hover:text-[var(--gray-12)]
@@ -134,7 +142,7 @@ export default function Column({ columnId, columnName, tasks }) {
                 <path d="M18 6L6 18M6 6l12 12" />
               </svg>
             </button>
-            <TodoForm id={editTaskId} onClose={closeModal} />
+            <TodoForm id={editTaskId} onClose={handleFormClose} />
           </div>
         </div>
       )}

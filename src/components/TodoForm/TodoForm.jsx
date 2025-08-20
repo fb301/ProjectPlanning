@@ -10,6 +10,7 @@ export default function TodoForm({
   assignedTo = "",
   dueDate = "",
   priority = "medium",
+  onClose, // New prop for callback when form closes
 }) {
   const initialFormState = {
     id: id,
@@ -88,6 +89,11 @@ export default function TodoForm({
       setIsSubmitted(true);
       // setTask(initialFormState);
       setTimeout(() => setIsSubmitted(false), 3000);
+
+      // Call onClose with refresh flag after successful submission
+      if (onClose) {
+        setTimeout(() => onClose(true), 1500); // Close modal and refresh after 1.5s
+      }
     } catch (err) {
       setErrorMsg(err.message ?? "Something dysfunctioned.");
     } finally {

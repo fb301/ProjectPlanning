@@ -1082,243 +1082,220 @@
       }
     </style>
 
-    <script>
-      let currentStep = 1;
-      const totalSteps = 3;
+<script>
+let currentStep = 1;
+const totalSteps = 3;
 
-      const stepValidation = {
-        1: ["fullName", "email"],
-        2: ["meetingType"],
-        3: ["terms"],
-      };
+const stepValidation = {
+  1: ["email", "password", "confirmPassword"], // Uppdaterade fält
+  2: ["meetingType"],
+  3: ["terms"],
+};
 
-      function updateProgress() {
-        const progressFill = document.getElementById("progressFill");
-        const percentage = (currentStep / totalSteps) * 100;
-        progressFill.style.width = percentage + "%";
+function updateProgress() {
+  const progressFill = document.getElementById("progressFill");
+  const percentage = (currentStep / totalSteps) * 100;
+  progressFill.style.width = percentage + "%";
 
-        for (let i = 1; i <= totalSteps; i++) {
-          const stepEl = document.getElementById("step" + i);
-          if (stepEl) {
-            if (i <= currentStep) {
-              stepEl.classList.add("active");
-            } else {
-              stepEl.classList.remove("active");
-            }
-          }
-        }
+  for (let i = 1; i <= totalSteps; i++) {
+    const stepEl = document.getElementById("step" + i);
+    if (stepEl) {
+      if (i <= currentStep) {
+        stepEl.classList.add("active");
+      } else {
+        stepEl.classList.remove("active");
       }
+    }
+  }
+}
 
-      function showStep(step) {
-        const steps = document.querySelectorAll(".form-step");
-        steps.forEach((s) => s.classList.remove("active"));
+function showStep(step) {
+  const steps = document.querySelectorAll(".form-step");
+  steps.forEach((s) => s.classList.remove("active"));
 
-        const currentStepEl = document.querySelector(`[data-step="${step}"]`);
-        if (currentStepEl) {
-          currentStepEl.classList.add("active");
-        }
+  const currentStepEl = document.querySelector(`[data-step="${step}"]`);
+  if (currentStepEl) {
+    currentStepEl.classList.add("active");
+  }
 
-        const prevBtn = document.getElementById("prevBtn");
-        const nextBtn = document.getElementById("nextBtn");
-        const buttonGroup = document.getElementById("buttonGroup");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const buttonGroup = document.getElementById("buttonGroup");
 
-        if (step === "success") {
-          buttonGroup.style.display = "none";
-          return;
-        }
+  if (step === "success") {
+    buttonGroup.style.display = "none";
+    return;
+  }
 
-        buttonGroup.style.display = "flex";
-        prevBtn.style.display = step === 1 ? "none" : "block";
+  buttonGroup.style.display = "flex";
+  prevBtn.style.display = step === 1 ? "none" : "block";
 
-        if (step === totalSteps) {
-          nextBtn.textContent = "Gå med i meetinget";
-        } else {
-          nextBtn.textContent = "Nästa";
-        }
-      }
+  if (step === totalSteps) {
+    nextBtn.textContent = "Gå med i meetinget";
+  } else {
+    nextBtn.textContent = "Nästa";
+  }
+}
 
-      function validateStep(step) {
-        const requiredFields = stepValidation[step];
-        if (!requiredFields) return true;
+function validateStep(step) {
+  const requiredFields = stepValidation[step];
+  if (!requiredFields) return true;
 
-        let isValid = true;
+  let isValid = true;
 
-        for (const fieldName of requiredFields) {
-          const field = document.querySelector(`[name="${fieldName}"]`);
-          if (!field) continue;
+  for (const fieldName of requiredFields) {
+    const field = document.querySelector(`[name="${fieldName}"]`);
+    if (!field) continue;
 
-          if (field.type === "radio") {
-            const radioGroup = document.querySelectorAll(
-              `[name="${fieldName}"]`
-            );
-            const isChecked = Array.from(radioGroup).some((radio) => radio.checked);
-            if (!isChecked) {
-              isValid = false;
-              radioGroup.forEach((radio) => {
-                radio.closest(".radio-item").style.borderColor = "#ef4444";
-              });
-            } else {
-              radioGroup.forEach((radio) => {
-                radio.closest(".radio-item").style.borderColor = "";
-              });
-            }
-          } else if (field.type === "checkbox") {
-            if (!field.checked) {
-              isValid = false;
-              field.closest(".checkbox-item").style.borderColor = "#ef4444";
-            } else {
-              field.closest(".checkbox-item").style.borderColor = "";
-            }
-          } else {
-            if (!field.value.trim()) {
-              isValid = false;
-              field.style.borderColor = "#ef4444";
-            } else {
-              field.style.borderColor = "";
-
-              if (field.type === "email") {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(field.value)) {
-                  isValid = false;
-                  field.style.borderColor = "#ef4444";
-                }
-              }
-            }
-          }
-        }
-
-        return isValid;
-      }
-
-      function nextStep() {
-        if (!validateStep(currentStep)) {
-          const card = document.querySelector(".glass-card");
-          card.style.animation = "shake 0.5s ease-in-out";
-          setTimeout(() => {
-            card.style.animation = card.classList.contains("user-interacting")
-              ? "none"
-              : "autoRotate 4s ease-in-out infinite";
-          }, 500);
-          return;
-        }
-
-        if (currentStep < totalSteps) {
-          currentStep++;
-          showStep(currentStep);
-          updateProgress();
-        } else {
-          submitForm();
-        }
-      }
-
-      function prevStep() {
-        if (currentStep > 1) {
-          currentStep--;
-          showStep(currentStep);
-          updateProgress();
-        }
-      }
-
-      function submitForm() {
-        setTimeout(() => {
-          showStep("success");
-          celebrate();
-        }, 500);
-      }
-
-      function celebrate() {
-        for (let i = 0; i < 50; i++) {
-          createConfetti();
-        }
-      }
-
-      function createConfetti() {
-        const confetti = document.createElement("div");
-        confetti.style.position = "fixed";
-        confetti.style.width = "10px";
-        confetti.style.height = "10px";
-        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.top = "-10px";
-        confetti.style.borderRadius = "50%";
-        confetti.style.pointerEvents = "none";
-        confetti.style.zIndex = "1000";
-
-        document.body.appendChild(confetti);
-
-        confetti.animate(
-          [
-            { transform: "translateY(0px) rotate(0deg)", opacity: 1 },
-            { transform: `translateY(100vh) rotate(720deg)`, opacity: 0 },
-          ],
-          {
-            duration: 3000,
-            easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          }
-        ).onfinish = () => confetti.remove();
-      }
-
-      const shakeKeyframes = `
-			@keyframes shake {
-				0%, 100% { transform: perspective(1000px) rotateX(5deg) translateX(0); }
-				25% { transform: perspective(1000px) rotateX(5deg) translateX(-5px); }
-				75% { transform: perspective(1000px) rotateX(5deg) translateX(5px); }
-			}
-		`;
-      const styleSheet = document.createElement("style");
-      styleSheet.textContent = shakeKeyframes;
-      document.head.appendChild(styleSheet);
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const nextBtn = document.getElementById("nextBtn");
-        const prevBtn = document.getElementById("prevBtn");
-
-        if (nextBtn) {
-          nextBtn.addEventListener("click", nextStep);
-        }
-
-        if (prevBtn) {
-          prevBtn.addEventListener("click", prevStep);
-        }
-
-        showStep(1);
-        updateProgress();
-
-        const card = document.querySelector(".glass-card");
-        const inputs = document.querySelectorAll("input, select, textarea");
-
-        const stopAutoRotate = () => {
-          if (card) {
-            card.style.animation = "none";
-            card.style.transform =
-              "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-          }
-        };
-
-        inputs.forEach((input) => {
-          input.addEventListener("focus", stopAutoRotate);
+    if (field.type === "radio") {
+      const radioGroup = document.querySelectorAll(`[name="${fieldName}"]`);
+      const isChecked = Array.from(radioGroup).some((radio) => radio.checked);
+      if (!isChecked) {
+        isValid = false;
+        radioGroup.forEach((radio) => {
+          radio.closest(".radio-item").style.borderColor = "#ef4444";
         });
-
-        inputs.forEach((input) => {
-          input.addEventListener("input", () => {
-            input.style.borderColor = "";
-            if (input.closest(".radio-item")) {
-              input.closest(".radio-item").style.borderColor = "";
-            }
-            if (input.closest(".checkbox-item")) {
-              input.closest(".checkbox-item").style.borderColor = "";
-            }
-          });
+      } else {
+        radioGroup.forEach((radio) => {
+          radio.closest(".radio-item").style.borderColor = "";
         });
+      }
+    } else if (field.type === "checkbox") {
+      if (!field.checked) {
+        isValid = false;
+        field.closest(".checkbox-item").style.borderColor = "#ef4444";
+      } else {
+        field.closest(".checkbox-item").style.borderColor = "";
+      }
+    } else {
+      if (!field.value.trim()) {
+        isValid = false;
+        field.style.borderColor = "#ef4444";
+      } else {
+        field.style.borderColor = "";
 
-        if (card) {
-          card.addEventListener("mousemove", (e) => {
-            // Your mousemove logic can be added here
-          });
+        // Email validering
+        if (field.type === "email") {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(field.value)) {
+            isValid = false;
+            field.style.borderColor = "#ef4444";
+          }
         }
-      });
 
-      function validatePasswords() {
+        // Lösenordsvalidering
+        if (field.name === "password") {
+          if (field.value.length < 8) {
+            isValid = false;
+            field.style.borderColor = "#ef4444";
+          }
+        }
+
+        // Bekräfta lösenord validering
+        if (field.name === "confirmPassword") {
+          const password = document.querySelector('[name="password"]').value;
+          if (field.value !== password) {
+            isValid = false;
+            field.style.borderColor = "#ef4444";
+          }
+        }
+      }
+    }
+  }
+
+  return isValid;
+}
+
+function nextStep() {
+  if (!validateStep(currentStep)) {
+    const card = document.querySelector(".glass-card");
+    card.style.animation = "shake 0.5s ease-in-out";
+    setTimeout(() => {
+      card.style.animation = card.classList.contains("user-interacting")
+        ? "none"
+        : "autoRotate 4s ease-in-out infinite";
+    }, 500);
+    return;
+  }
+
+  if (currentStep < totalSteps) {
+    currentStep++;
+    showStep(currentStep);
+    updateProgress();
+  } else {
+    submitForm();
+  }
+}
+
+function prevStep() {
+  if (currentStep > 1) {
+    currentStep--;
+    showStep(currentStep);
+    updateProgress();
+  }
+}
+
+// Modifierad submitForm funktion med omdirigering
+function submitForm() {
+  setTimeout(() => {
+    showStep("success");
+    celebrate(() => {
+      // Callback som körs när confetti är klart
+      setTimeout(() => {
+        // Omdirigera till index.astro efter confetti
+        window.location.href = "/";
+      }, 1000); // Vänta 1 sekund efter confetti innan omdirigering
+    });
+  }, 500);
+}
+
+// Modifierad celebrate funktion med callback
+function celebrate(callback) {
+  const confettiCount = 50;
+  let confettiFinished = 0;
+  
+  for (let i = 0; i < confettiCount; i++) {
+    createConfetti(() => {
+      confettiFinished++;
+      // När alla confetti är klara, kör callback
+      if (confettiFinished === confettiCount && callback) {
+        callback();
+      }
+    });
+  }
+}
+
+// Modifierad createConfetti funktion med callback
+function createConfetti(onFinish) {
+  const confetti = document.createElement("div");
+  confetti.style.position = "fixed";
+  confetti.style.width = "10px";
+  confetti.style.height = "10px";
+  confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+  confetti.style.left = Math.random() * 100 + "vw";
+  confetti.style.top = "-10px";
+  confetti.style.borderRadius = "50%";
+  confetti.style.pointerEvents = "none";
+  confetti.style.zIndex = "1000";
+
+  document.body.appendChild(confetti);
+
+  confetti.animate(
+    [
+      { transform: "translateY(0px) rotate(0deg)", opacity: 1 },
+      { transform: `translateY(100vh) rotate(720deg)`, opacity: 0 },
+    ],
+    {
+      duration: 3000,
+      easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    }
+  ).onfinish = () => {
+    confetti.remove();
+    if (onFinish) onFinish();
+  };
+}
+
+function validatePasswords() {
   const password = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirmPassword').value;
   
@@ -1329,39 +1306,78 @@
   }
 }
 
-// Lägg till event listeners
-document.getElementById('password').addEventListener('input', validatePasswords);
-document.getElementById('confirmPassword').addEventListener('input', validatePasswords);
+// Shake animation keyframes
+const shakeKeyframes = `
+  @keyframes shake {
+    0%, 100% { transform: perspective(1000px) rotateX(5deg) translateX(0); }
+    25% { transform: perspective(1000px) rotateX(5deg) translateX(-5px); }
+    75% { transform: perspective(1000px) rotateX(5deg) translateX(5px); }
+  }
+`;
+const styleSheet = document.createElement("style");
+styleSheet.textContent = shakeKeyframes;
+document.head.appendChild(styleSheet);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", nextStep);
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", prevStep);
+  }
+
+  showStep(1);
+  updateProgress();
+
+  const card = document.querySelector(".glass-card");
+  const inputs = document.querySelectorAll("input, select, textarea");
+
+  const stopAutoRotate = () => {
+    if (card) {
+      card.style.animation = "none";
+      card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+    }
+  };
+
+  inputs.forEach((input) => {
+    input.addEventListener("focus", stopAutoRotate);
+  });
+
+  inputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      input.style.borderColor = "";
+      if (input.closest(".radio-item")) {
+        input.closest(".radio-item").style.borderColor = "";
+      }
+      if (input.closest(".checkbox-item")) {
+        input.closest(".checkbox-item").style.borderColor = "";
+      }
+    });
+  });
+
+  // Lägg till password validation event listeners
+  const passwordField = document.getElementById('password');
+  const confirmPasswordField = document.getElementById('confirmPassword');
+  
+  if (passwordField) {
+    passwordField.addEventListener('input', validatePasswords);
+  }
+  
+  if (confirmPasswordField) {
+    confirmPasswordField.addEventListener('input', validatePasswords);
+  }
+
+  if (card) {
+    card.addEventListener("mousemove", (e) => {
+      // Din mousemove logik kan läggas till här
+    });
+  }
+});
 </script>
 
-<!-- SVENSKA VERSION: -->
-<div class="form-group">
-  <label class="form-label">Lösenord *</label>
-  <input
-    type="password"
-    class="form-input"
-    name="password"
-    id="password"
-    placeholder="Skapa ett säkert lösenord"
-    required
-    minlength="8"
-    autocomplete="new-password"
-  />
-</div>
-
-<div class="form-group">
-  <label class="form-label">Bekräfta lösenord *</label>
-  <input
-    type="password"
-    class="form-input"
-    name="confirmPassword"
-    id="confirmPassword"
-    placeholder="Bekräfta ditt lösenord"
-    required
-    minlength="8"
-    autocomplete="new-password"
-  />
-</div>
-    </script>
   </body>
 </html>

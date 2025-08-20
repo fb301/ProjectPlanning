@@ -177,13 +177,24 @@ export default function KanbanBoard() {
           onDragEnd={handleDragEnd}
         >
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <Column columnId="todo" columnName="To Do" tasks={tasks.todo} />
+            <Column
+              columnId="todo"
+              columnName="To Do"
+              tasks={tasks.todo}
+              onTaskUpdate={fetchTasks}
+            />
             <Column
               columnId="progress"
               columnName="In Progress"
               tasks={tasks.progress}
+              onTaskUpdate={fetchTasks}
             />
-            <Column columnId="done" columnName="Done" tasks={tasks.done} />
+            <Column
+              columnId="done"
+              columnName="Done"
+              tasks={tasks.done}
+              onTaskUpdate={fetchTasks}
+            />
           </div>
         </DndContext>
 

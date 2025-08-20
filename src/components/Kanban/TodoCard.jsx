@@ -60,6 +60,7 @@ export default function TodoCard({
             e.stopPropagation();
             if (onEdit) onEdit(id);
           }}
+          onPointerDown={(e) => e.stopPropagation()}
           className="w-full p-1 cursor-pointer bg-[var(--accent-6)] rounded-[var(--radius-2)] hover:bg-[var(--accent-9)] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out transform hover:scale-105"
         >
           Edit Task ✏️

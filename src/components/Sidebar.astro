@@ -4,6 +4,7 @@ import {
   FileTextIcon,
   LayoutIcon,
   HamburgerMenuIcon,
+  CubeIcon,
   RocketIcon,
   ActivityLogIcon, // Ny ikon importeras
 } from "@radix-ui/react-icons";
@@ -19,43 +20,49 @@ import {
       <HamburgerMenuIcon width="24" height="24" />
     </button>
 
-    <nav class="flex-1 px-2 py-4 space-y-2">
-      <a
-        href="/"
-        class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
-        data-label="Dashboard"
-      >
-        <DashboardIcon width="24" height="24" />
-      </a>
-      <a
-        href="/kanban"
-        class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
-        data-label="Kanban Board"
-      >
-        <LayoutIcon width="24" height="24" />
-      </a>
-      <a
-        href="/taskform"
-        class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
-        data-label="Taskform"
-      >
-        <FileTextIcon width="24" height="24" />
-      </a>
-      <a
-        href="/ganttpage"
-        class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
-        data-label="Gantt"
-      >
-        <ActivityLogIcon width="24" height="24" />
-        <a
-          href="/landingpage"
-          class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
-          data-label="Landningssida"
-        >
-          <RocketIcon width="24" height="24" />
-        </a>
-      </a>
-    </nav>
+<nav class="flex-1 px-2 py-4 space-y-2">
+  <a
+    href="/"
+    class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
+    data-label="Dashboard"
+  >
+    <DashboardIcon width="24" height="24" />
+  </a>
+  <a
+    href="/kanban"
+    class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
+    data-label="Kanban Board"
+  >
+    <LayoutIcon width="24" height="24" />
+  </a>
+  <a
+    href="/taskform"
+    class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
+    data-label="Taskform"
+  >
+    <FileTextIcon width="24" height="24" />
+  </a>
+  <a
+    href="/ganttpage"
+    class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
+    data-label="Gantt"
+  >
+    <ActivityLogIcon width="24" height="24" />
+  </a>
+  <a
+    href="/landingpage"
+    class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
+    data-label="Landningssida"
+  >
+    <RocketIcon width="24" height="24" />
+  </a>
+  <a
+    href="/flowchart"
+    class="sidebar-item flex flex-grow items-center p-3 rounded-lg text-[var(--gray-12)] hover:bg-[var(--gray-a3)] transition-colors"
+    data-label="Flödesschema"
+  >
+    <RocketIcon width="24" height="24" /> </a>
+</nav>
   </div>
 
   <script>

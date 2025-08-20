@@ -4,8 +4,8 @@ export default function TodoCard({
   title,
   description,
   status,
-  assignedTo,
-  dueDate,
+  assigned_to,
+  due_date,
   priority,
   id,
   onEdit, // Add this prop
@@ -41,14 +41,11 @@ export default function TodoCard({
 
       <p className="text-gray-300 text-lg mb-4 italic">{description}</p>
 
-      <div className="text-base text-gray-200 flex justify-between mb-2">
-        <span>
-          👤 <strong>{assignedTo}</strong>
-        </span>
-        <span>
-          📅 <strong>{dueDate}</strong>
-        </span>
-      </div>
+     <div className="text-base text-gray-200 mb-2">
+  <div>👤 <strong>{assigned_to}</strong></div>
+  <div>📅 <strong>{due_date}</strong></div>
+</div>
+
 
       <div className="text-sm">
         🔥 Priority: <span className={priorityColor}>{priority}</span>

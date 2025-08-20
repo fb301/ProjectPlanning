@@ -30,6 +30,7 @@ export default function Column({ columnId, columnName, tasks }) {
   const closeModal = () => setEditTaskId(null);
 
   return (
+    <div>
     <div
       ref={setDroppableRef}
       className={`p-5 rounded-2xl min-h-[400px] w-80 ${columnBg[columnId]}`}
@@ -60,15 +61,17 @@ export default function Column({ columnId, columnName, tasks }) {
         )}
       </SortableContext>
 
-      {/* Modal */}
+
+    </div>
+          {/* Modal */}
       {editTaskId && (
-        <div className="fixed inset-0 bg-black bg-opacity-10 flex items-center justify-center z-50">
-          <div className="bg-[var(--color-panel)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] p-6 shadow-sm min-w-[350px] relative">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-[var(--gray-1)] border border-[var(--gray-a6)] rounded-[var(--radius-3)] shadow-sm min-w-[350px] relative">
             <button
               onClick={closeModal}
-              className="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-2xl"
+              className="absolute top-2 right-2 cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-120 text-2xl"
             >
-              ×
+              ❌
             </button>
             <TodoForm id={editTaskId} onClose={closeModal} />
           </div>

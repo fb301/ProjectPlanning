@@ -1,5 +1,10 @@
 ---
 
+import Header from '../components/Header.astro';
+import LoginComponent from '../components/LoginComponent.astro';
+import Layout from "../layouts/Layout.astro";
+
+
 ---
 
 <!doctype html>
@@ -22,13 +27,7 @@
         <img src="/logos/logo5.png" alt="Fiktiv logo 4" class="company-logo" />
         
 
-       <button class="login-button">
-  <svg class="login-icon" viewBox="0 0 20 20" fill="currentColor">
-    <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-2 0V4H5v12h10v-2a1 1 0 112 0v3a1 1 0 01-1 1H4a1 1 0 01-1-1V3z" clip-rule="evenodd" />
-    <path fill-rule="evenodd" d="M6 10a1 1 0 011-1h6l-2-2a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4A1 1 0 0111 14l2-2H7a1 1 0 01-1-1z" clip-rule="evenodd" />
-  </svg>
-  Already a doer? 
-</button>
+  <LoginComponent />
         
       </div>
     </div>
@@ -410,7 +409,7 @@
       .footer-heading {
         font-size: 1.5rem; /* En bra storlek för rubriken */
         font-weight: 600; /* Gör texten lite fetare */
-        color: #e93d82; /* En mörkare färg, men inte helt svart */
+        color: black; /* En mörkare färg, men inte helt svart */
         text-align: center; /* Centrerar texten i behållaren */
         margin-bottom: 2rem; /* Skapar lite utrymme under rubriken */
         font-family: 'Poppins', sans-serif; /* Exempel på ett snyggt typsnitt */
@@ -427,6 +426,7 @@
       /* Förstärkt CSS för login-knappen */
 .logos-grid .login-button {
   display: flex !important;
+  gap: 2rem;
   align-items: center;
   justify-content: center;
   
@@ -998,7 +998,7 @@
       .feature-icon svg {
         height: 3rem;
         width: 3rem;
-        color: #e93d82;
+        color: #dbeafe;
         stroke-width: 1.5px;
       }
 
@@ -1318,6 +1318,9 @@ const styleSheet = document.createElement("style");
 styleSheet.textContent = shakeKeyframes;
 document.head.appendChild(styleSheet);
 
+
+    </script>
+
 document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.getElementById("nextBtn");
   const prevBtn = document.getElementById("prevBtn");
@@ -1378,6 +1381,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
+
 
   </body>
 </html>

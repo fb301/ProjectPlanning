@@ -18,7 +18,7 @@ import Layout from "../layouts/Layout.astro";
   <body>
      <footer class="company-footer">
     <div class="footer-container">
-      <h4 class="footer-heading">Used and trusted by multiple companiess</h4>
+      
       <div class="logos-grid">
         <img src="/logos/logo1.png" alt="Fiktiv logo 1" class="company-logo" />
         <img src="/logos/logo2.png" alt="Fiktiv logo 2" class="company-logo" />
@@ -121,7 +121,7 @@ import Layout from "../layouts/Layout.astro";
             <div class="form-step" data-step="2">
               <h2 class="form-title">Project Information</h2>
               <p class="form-subtitle">
-                Berätta om dina behov och tillgänglighet för kommande sprint.
+                What´s the challenge?
               </p>
               <div class="form-group">
                 <label class="form-label"
@@ -145,7 +145,7 @@ import Layout from "../layouts/Layout.astro";
                       name="meetingType"
                       value="planning"
                     />
-                    <label for="planning">Sprint Planning</label>
+                    <label for="planning">Construction</label>
                   </div>
                   <div class="radio-item">
                     <input
@@ -154,7 +154,7 @@ import Layout from "../layouts/Layout.astro";
                       name="meetingType"
                       value="review"
                     />
-                    <label for="review">Sprint Review</label>
+                    <label for="review">Software development</label>
                   </div>
                   <div class="radio-item">
                     <input
@@ -163,7 +163,7 @@ import Layout from "../layouts/Layout.astro";
                       name="meetingType"
                       value="retro"
                     />
-                    <label for="retro">Sprint Retrospective</label>
+                    <label for="retro">Product launch</label>
                   </div>
                   <div class="radio-item">
                     <input
@@ -172,12 +172,12 @@ import Layout from "../layouts/Layout.astro";
                       name="meetingType"
                       value="refinement"
                     />
-                    <label for="refinement">Backlog Refinement</label>
+                    <label for="refinement">System improvement</label>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label class="form-label">Tillgänglighet</label>
+                <label class="form-label">Timezone</label>
                 <div class="checkbox-group">
                   <div class="checkbox-item">
                     <input
@@ -186,7 +186,7 @@ import Layout from "../layouts/Layout.astro";
                       name="availability[]"
                       value="morning"
                     />
-                    <label for="morning">Morgon (08:00-12:00)</label>
+                    <label for="morning">Berlin</label>
                   </div>
                   <div class="checkbox-item">
                     <input
@@ -195,7 +195,7 @@ import Layout from "../layouts/Layout.astro";
                       name="availability[]"
                       value="afternoon"
                     />
-                    <label for="afternoon">Eftermiddag (12:00-17:00)</label>
+                    <label for="afternoon">Tokyo</label>
                   </div>
                   <div class="checkbox-item">
                     <input
@@ -204,43 +204,41 @@ import Layout from "../layouts/Layout.astro";
                       name="availability[]"
                       value="evening"
                     />
-                    <label for="evening">Kväll (17:00-20:00)</label>
+                    <label for="evening">Cape town</label>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <label class="form-label">Projektets ungefärliga storlek</label>
-                <select class="form-select" name="projectSize">
-                  <option value="">Välj projektets omfattning</option>
-                  <option value="small">Litet projekt (1-2 veckor)</option>
-                  <option value="medium">Mediumstort projekt (1-2 månader)</option>
-                  <option value="large">Stort projekt (3-6 månader)</option>
-                  <option value="enterprise"
-                    >Enterprise projekt (6+ månader)</option
+                <label class="form-label">Approximate project size</label>
+<select class="form-select" name="projectSize">
+  <option value="">Select project scope</option>
+  <option value="small">Small project (1-2 weeks)</option>
+  <option value="medium">Medium-sized project (1-2 months)</option>
+  <option value="large">Large project (3-6 months)</option>
+  <option value="enterprise">Enterprise project (6+ months)</option>
+</select>
                   >
                 </select>
               </div>
             </div>
             <div class="form-step" data-step="3">
-              <h2 class="form-title">Bekräfta & Gå med</h2>
+              <h2 class="form-title">Confirm & Join our team</h2>
               <p class="form-subtitle">
-                Lämna ett meddelande om specifika behov eller frågor inför
-                meetinget.
+                Leave a launch message for your team.
               </p>
               <div class="form-group">
-                <label class="form-label">Meddelande/Kommentarer</label>
+                <label class="form-label">Notifications& Comments</label>
                 <textarea
                   class="form-textarea"
                   name="message"
-                  placeholder="Berätta om specifika utmaningar, mål eller frågor du vill diskutera under meetinget..."
+                  placeholder="Notify your team about your project specifications"
                 ></textarea>
               </div>
               <div class="form-group">
                 <div class="checkbox-item">
                   <input type="checkbox" id="terms" name="terms" required />
                   <label for="terms"
-                    >Jag förstår att detta är ett scrum meeting och kommer att
-                    delta aktivt *</label
+                    >I accept the terms and conditions *</label
                   >
                 </div>
               </div>
@@ -252,8 +250,7 @@ import Layout from "../layouts/Layout.astro";
                     name="notifications"
                   />
                   <label for="notifications"
-                    >Få påminnelser och uppdateringar om meetinget via
-                    e-post</label
+                    >Yes, i would like trick & tricks in my mailbox about effenciency for my team</label
                   >
                 </div>
               </div>
@@ -278,11 +275,9 @@ import Layout from "../layouts/Layout.astro";
                 </div>
                 <h2 class="success-title">Welcome to the club of doers</h2>
                 <p class="success-text">
-                  Du är nu registrerad för scrum meetinget. Du kommer få en
-                  kalenderinbjudan och mer information via e-post inom kort.
+                  Welcome to our club.
                   <br /><br />
-                  <strong>Nästa steg:</strong> Förbered dig genom att tänka på
-                  vad du gjort, planerar att göra och eventuella blockeringar.
+                  <strong>Next step:</strong> Prepare your team for the changes made.
                 </p>
               </div>
             </div>
@@ -293,10 +288,10 @@ import Layout from "../layouts/Layout.astro";
                 id="prevBtn"
                 style="display: none;"
               >
-                Föregående
+                Previous
               </button>
               <button type="button" class="btn btn-primary" id="nextBtn"
-                >Nästa</button
+                >Next</button
               >
             </div>
           </form>
@@ -1131,9 +1126,9 @@ function showStep(step) {
   prevBtn.style.display = step === 1 ? "none" : "block";
 
   if (step === totalSteps) {
-    nextBtn.textContent = "Gå med i meetinget";
+    nextBtn.textContent = "Join the club";
   } else {
-    nextBtn.textContent = "Nästa";
+    nextBtn.textContent = "Next";
   }
 }
 
